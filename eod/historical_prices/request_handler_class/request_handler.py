@@ -58,4 +58,8 @@ class RequestHandler():
         """
         dict_to_append['fmt'] = 'json'
         dict_to_append['api_token'] = self.api_key
+        
+        if 'from_' in dict_to_append:
+            dict_to_append['from'] = dict_to_append.pop('from_')
+            
         return dict_to_append
