@@ -5,7 +5,7 @@ Created on Thu May  6 11:16:52 2021
 @author: lauta
 """
 
-from eod.historical_prices.request_handler_class import RequestHandler
+from eod.request_handler_class import RequestHandler
 
 class SplitsDividendsShort(RequestHandler):
     def __init__(self, api_key:str, timeout:int):

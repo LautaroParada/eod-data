@@ -1,2 +1,1 @@
-from .request_handler_class import RequestHandler
 from .historical_psd import HistoricalPrices
