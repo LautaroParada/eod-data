@@ -17,4 +17,5 @@ symbol='AAPL.US'
 
 resp = client.get_stock_prices(symbol, period='d', to='2021-04-24')
 resp = client.get_dividends(symbol, to='2021-04-24')
-resp = client.get_splits(symbol,  to='2021-04-24')
+resp = client.get_splits(symbol, to='2021-04-24')
+resp = client.get_short_interest(symbol, to='2021-04-24')
