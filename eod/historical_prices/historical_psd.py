@@ -86,7 +86,7 @@ class StockPriceData(RequestHandler):
         symbol : str
             name of the stock to analyse, consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}.
         **query_params : dict
-        query parameters.
+            query parameters.
 
         Returns
         -------
@@ -96,10 +96,39 @@ class StockPriceData(RequestHandler):
         """
         self.endpoint = self.URL + symbol.upper()
         return super().handle_request(query_params)
+    
+class SplitsDividendsShort(RequestHandler):
+    def __init__(self, api_key:str, timeout:int):
+        
+        self.URL_DIVIDENDS = 'https://eodhistoricaldata.com/api/div/'
+        self.endpoint = None
+        super().__init__(api_key, timeout, '')
+        
+    def get_dividends(self, symbol:str, **query_params):
+        """
+        Get dividends for any supported ticker.
+
+        Parameters
+        ----------
+        symbol : str
+            name of the stock to analyse, consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}.
+        **query_params :
+            query parameters.
+        
+        Returns
+        -------
+        TYPE
+            DESCRIPTION.
+
+        """
+        self.endpoint = self.URL_DIVIDENDS + symbol.upper()
+        return super().handle_request(query_params)
 
 # -----------------------------------              
 
 class HistoricalPrices(StockPriceData):
     
     def __init__(self, api_key:str, timeout:int):
+        # inhereting the API classes
         StockPriceData.__init__(self, api_key, timeout)
+        SplitsDividendsShort.__init__(self, api_key, timeout)
