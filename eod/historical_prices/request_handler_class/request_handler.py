@@ -4,18 +4,17 @@ from typing import Dict
 import logging
 
 class RequestHandler():
-    def __init__(self, api_key:str, timeout:int, endpoint:str):
+    def __init__(self, api_key:str, timeout:int):
         # general parameters of the api
         self.api_key = api_key
         self.timeout = timeout
-        self.endpoint = endpoint
         self.resp = None
         
     # -------------------------------------------
     # Methods for data processing
     # -------------------------------------------
         
-    def handle_request(self, query_params: Dict[str, str]={}):
+    def handle_request(self, endpoint_url, query_params: Dict[str, str]={}):
         """
         central point to handle the requests of the API
 
@@ -33,7 +32,7 @@ class RequestHandler():
         # append the api key and format to the parameters 
         query_params_ = self.__append_fmt(query_params)
         
-        self.resp = requests.get(url=self.endpoint,
+        self.resp = requests.get(url=endpoint_url,
                                  params=query_params_,
                                  timeout=self.timeout)
         
