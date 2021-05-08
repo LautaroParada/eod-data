@@ -9,9 +9,10 @@ from eod.historical_prices.stock_price_data_api import StockPriceData
 from eod.historical_prices.hist_splits_divs_shorts_api import SplitsDividendsShort
 from eod.historical_prices.live_delayed_api import LiveStockPrices
 from eod.historical_prices.intraday_hist_api import IntradayStockData
+from eod.historical_prices.options_data_api import StockOptionsData
 
 class HistoricalPrices(StockPriceData, SplitsDividendsShort, LiveStockPrices,
-                       IntradayStockData):
+                       IntradayStockData, StockOptionsData):
     
     def __init__(self, api_key:str, timeout:int):
         # inhereting the API classes
@@ -19,3 +20,4 @@ class HistoricalPrices(StockPriceData, SplitsDividendsShort, LiveStockPrices,
         SplitsDividendsShort.__init__(self, api_key, timeout)
         LiveStockPrices.__init__(self, api_key, timeout)
         IntradayStockData.__init__(self, api_key, timeout)
+        StockOptionsData.__init__(self, api_key, timeout)
