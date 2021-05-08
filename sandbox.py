@@ -18,7 +18,8 @@ symbol='AAPL.US'
 #%% Historical Prices, Splits and Dividends Data API testing 
 
 resp = client.get_stock_prices(symbol, period='d', from_='1995-03-03', to='2021-04-24')
-resp = client.get_live_prices(symbol, s='VTI,EUR.FOREX')
+resp = client.get_live_prices(symbol, s='GLD,EUR.FOREX')
 resp = client.get_dividends(symbol, from_='2020-03-01', to='2021-04-24')
 resp = client.get_splits(symbol, from_='1994-01-01', to='2021-04-24')
 resp = client.get_short_interest(symbol, to='2021-04-24')
+resp = client.get_intraday_data(symbol, interval='1m', from_='1620136800', to='1620414000')
