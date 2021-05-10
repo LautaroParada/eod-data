@@ -12,9 +12,10 @@ class StockEtfFundsIndexFundamentalData(RequestHandler):
         # base URL's of the API
         self.URL_FUNDAMENTAL = 'https://eodhistoricaldata.com/api/fundamentals/'
         self.URL_BULK_FUNDAMENTALS = 'http://eodhistoricaldata.com/api/bulk-fundamentals/'
+        self.URL_BONDS_FUNDAMENTALS = 'https://eodhistoricaldata.com/api/bond-fundamentals/'
         super().__init__(api_key, timeout)
         
-    def get_fundamentals(self, symbol:str, **query_params):
+    def get_fundamentals_stock(self, symbol:str, **query_params):
         """
         Get fundamental data for the requested stock, etf, fund or index.
 
@@ -34,7 +35,7 @@ class StockEtfFundsIndexFundamentalData(RequestHandler):
         self.endpoint = self.URL_FUNDAMENTAL + symbol.upper()
         return super().handle_request(self.endpoint, query_params)
     
-    def get_bulk_fundamentals(self, symbol:str, **query_params):
+    def get_fundamentals_bulk(self, symbol:str, **query_params):
         """
         With this endpoint you able to download fundamental data for thousands 
         of companies in one request. It supports only stocks and doesn’t 
@@ -61,4 +62,26 @@ class StockEtfFundsIndexFundamentalData(RequestHandler):
 
         """
         self.endpoint = self.URL_BULK_FUNDAMENTALS + symbol.upper()
+        return super().handle_request(self.endpoint, query_params)
+    
+    def get_fundamentals_bonds(self, cusip:str, **query_params):
+        """
+        Get US corporate bonds fundamental data feed. Bonds fundamentals data 
+        could be accessed either via ISIN or via CUSIP IDs. Other IDs are not
+        supported at the moment.
+
+        Parameters
+        ----------
+        cusip : str
+            id of the corporate bond.
+        **query_params :
+            query parameters.
+
+        Returns
+        -------
+        dict
+            fundamental data for the corporate bond.
+
+        """
+        self.endpoint = self.URL_BONDS_FUNDAMENTALS + cusip.upper()
         return super().handle_request(self.endpoint, query_params)
