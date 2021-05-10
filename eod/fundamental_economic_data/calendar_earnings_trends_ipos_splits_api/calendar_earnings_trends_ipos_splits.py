@@ -12,6 +12,7 @@ class CalendarEarningsTrendsIposSplits(RequestHandler):
         # base URL's of the API
         self.URL_EARNINGS = 'https://eodhistoricaldata.com/api/calendar/earnings'
         self.URL_TRENDS = 'https://eodhistoricaldata.com/api/calendar/trends'
+        self.URL_IPOS = 'https://eodhistoricaldata.com/api/calendar/ipos'
         super().__init__(api_key, timeout)
 
     def get_calendar_earnings(self, **query_params):
@@ -48,4 +49,23 @@ class CalendarEarningsTrendsIposSplits(RequestHandler):
 
         """
         self.endpoint = self.URL_TRENDS
+        return super().handle_request(self.endpoint, query_params)
+    
+    def get_calendar_ipos(self, **query_params):
+        """
+        Get the Historical and upcoming IPOs for the whole range of supported 
+        exchanges.
+
+        Parameters
+        ----------
+        **query_params :
+            query parameters.
+
+        Returns
+        -------
+        dict
+            Historical and upcoming IPOs
+
+        """
+        self.endpoint = self.URL_IPOS
         return super().handle_request(self.endpoint, query_params)
