@@ -1,7 +1,5 @@
 import requests
-import json
 from typing import Dict
-import logging
 
 class RequestHandler():
     def __init__(self, api_key:str, timeout:int):
@@ -59,6 +57,9 @@ class RequestHandler():
         dict_to_append['fmt'] = 'json'
         dict_to_append['api_token'] = self.api_key
         
+        if 'from' in dict_to_append:
+                del dict_to_append['from']
+                
         if 'from_' in dict_to_append:
             dict_to_append['from'] = dict_to_append.pop('from_')
             

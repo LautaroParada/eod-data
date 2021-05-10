@@ -10,7 +10,7 @@ from eod.request_handler_class import RequestHandler
 class StockPriceData(RequestHandler):
     def __init__(self, api_key:str, timeout:int):
         
-        self.URL = 'https://eodhistoricaldata.com/api/eod/'
+        self.URL_STOCK_PRICES = 'https://eodhistoricaldata.com/api/eod/'
         super().__init__(api_key, timeout)
         
     def get_stock_prices(self, symbol:str, **query_params):
@@ -30,5 +30,5 @@ class StockPriceData(RequestHandler):
             Historical data for the selected symbol.
 
         """
-        self.endpoint = self.URL + symbol.upper()
+        self.endpoint = self.URL_STOCK_PRICES + symbol.upper()
         return super().handle_request(self.endpoint, query_params)

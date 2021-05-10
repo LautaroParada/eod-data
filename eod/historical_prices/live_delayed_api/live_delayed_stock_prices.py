@@ -10,7 +10,7 @@ from eod.request_handler_class import RequestHandler
 class LiveStockPrices(RequestHandler):
     
     def __init__(self, api_key:str, timeout:int):
-        self.URL = 'https://eodhistoricaldata.com/api/real-time/'
+        self.URL_LIVE_STOCKS = 'https://eodhistoricaldata.com/api/real-time/'
         super().__init__(api_key, timeout)
         
     def get_live_prices(self, symbol:str, **query_params):
@@ -33,5 +33,5 @@ class LiveStockPrices(RequestHandler):
             live (delayed) stock prices of the selected companies.
 
         """
-        self.endpoint = self.URL + symbol.upper()
+        self.endpoint = self.URL_LIVE_STOCKS + symbol.upper()
         return super().handle_request(self.endpoint, query_params)

@@ -9,7 +9,7 @@ from eod.request_handler_class import RequestHandler
 
 class StockOptionsData(RequestHandler):
     def __init__(self, api_key:str, timeout:int):
-        self.URL = 'https://eodhistoricaldata.com/api/options/'
+        self.URL_OPTIONS = 'https://eodhistoricaldata.com/api/options/'
         super().__init__(api_key, timeout)
         
     def get_stock_options(self, symbol:str, **query_params):
@@ -32,5 +32,5 @@ class StockOptionsData(RequestHandler):
             Stock options data for the selected company.
 
         """
-        self.endpoint = self.URL + symbol.upper()
+        self.endpoint = self.URL_OPTIONS + symbol.upper()
         return super().handle_request(self.endpoint, query_params) 

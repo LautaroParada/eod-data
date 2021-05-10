@@ -6,7 +6,7 @@ Created on Wed May  5 08:39:48 2021
 """
 
 from eod.historical_prices.stock_price_data_api import StockPriceData
-from eod.historical_prices.hist_splits_divs_shorts_api import SplitsDividendsShort
+from eod.historical_prices.splits_divs_shorts_api import SplitsDividendsShort
 from eod.historical_prices.live_delayed_api import LiveStockPrices
 from eod.historical_prices.intraday_hist_api import IntradayStockData
 from eod.historical_prices.options_data_api import StockOptionsData
@@ -22,4 +22,4 @@ class HistoricalPrices(StockPriceData, SplitsDividendsShort, LiveStockPrices,
         LiveStockPrices.__init__(self, api_key, timeout)
         IntradayStockData.__init__(self, api_key, timeout)
         StockOptionsData.__init__(self, api_key, timeout)
-        TechnicalIndicatorsData.__init__(self, api_key, timeout)
+        #TechnicalIndicatorsData.__init__(self, api_key, timeout)

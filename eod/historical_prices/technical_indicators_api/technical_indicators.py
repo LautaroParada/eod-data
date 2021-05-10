@@ -10,7 +10,7 @@ from eod.request_handler_class import RequestHandler
 class TechnicalIndicatorsData(RequestHandler):
     def __init__(self, api_key:str, timeout:int):
         
-        self.URL = 'https://eodhistoricaldata.com/api/technical/'
+        self.URL_TA = 'https://eodhistoricaldata.com/api/technical/'
         super().__init__(api_key, timeout)
         
     def get_stock_ta(self, symbol:str, **query_params):
@@ -30,5 +30,5 @@ class TechnicalIndicatorsData(RequestHandler):
             technical indicator for the selected company.
 
         """
-        self.endpoint = self.URL + symbol.upper()
+        self.endpoint = self.URL_TA + symbol.upper()
         return super().handle_request(self.endpoint, query_params)
