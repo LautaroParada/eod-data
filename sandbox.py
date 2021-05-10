@@ -34,3 +34,4 @@ resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2021-12
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA')
 resp = client.get_calendar_ipos()
 resp = client.get_calendar_splits()
+resp = client.get_macro_indicator('CHL')
