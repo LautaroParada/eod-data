@@ -25,3 +25,8 @@ resp = client.get_short_interest(symbol, to='2021-04-24')
 resp = client.get_intraday_data(symbol, interval='1m', from_='1620136800', to='1620414000')
 resp = client.get_stock_options(symbol)
 resp = client.get_stock_ta(symbol, function='sma', from_='2020-03-01', to='2021-05-07', period=10)
+
+#%% Fundamental and economic financial data
+
+resp = client.get_fundamentals('GSPC.INDX')
+# resp = client.get_bulk_fundamentals('AMEX')
