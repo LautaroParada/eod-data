@@ -1,0 +1,34 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Thu May  6 11:12:30 2021
+
+@author: lauta
+"""
+
+from eod.request_handler_class import RequestHandler
+
+class StockPriceData(RequestHandler):
+    def __init__(self, api_key:str, timeout:int):
+        
+        self.URL_STOCK_PRICES = 'https://eodhistoricaldata.com/api/eod/'
+        super().__init__(api_key, timeout)
+        
+    def get_stock_prices(self, symbol:str, **query_params):
+        """
+        Get historical stock price data
+
+        Parameters
+        ----------
+        symbol : str
+            name of the stock to analyse, consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}.
+        **query_params : dict
+            query parameters.
+
+        Returns
+        -------
+        list
+            Historical data for the selected symbol.
+
+        """
+        self.endpoint = self.URL_STOCK_PRICES + symbol.upper()
+        return super().handle_request(self.endpoint, query_params)
