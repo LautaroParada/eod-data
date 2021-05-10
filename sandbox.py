@@ -30,3 +30,4 @@ resp = client.get_stock_ta(symbol, function='sma', from_='2020-03-01', to='2021-
 
 resp = client.get_fundamentals('GSPC.INDX')
 # resp = client.get_bulk_fundamentals('AMEX')
+resp = client.get_upcoming_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2021-12-31')
