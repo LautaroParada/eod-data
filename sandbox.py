@@ -62,6 +62,7 @@ resp = client.get_macro_indicator('CHL')
 #%% Exchanges API's
 
 resp = client.get_bulk_markets(exchange='sn', filter_='extended')
+resp = client.get_exchanges()
 
 # Questions and changes
 
