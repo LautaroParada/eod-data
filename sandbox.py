@@ -58,3 +58,14 @@ resp = client.get_macro_indicator('CHL')
 1. Consider to include a method to list all available macro indicators
 
 """
+
+#%% Exchanges API's
+
+resp = client.get_bulk_markets(exchange='sn', filter_='extended')
+
+# Questions and changes
+
+"""
+1. The symbols query parameter for the bulk request is not working properly.
+
+"""
