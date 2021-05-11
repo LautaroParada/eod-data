@@ -63,6 +63,7 @@ resp = client.get_macro_indicator('CHL')
 
 resp = client.get_bulk_markets(exchange='sn', filter_='extended')
 resp = client.get_exchanges()
+resp = client.get_exchange_symbols('IS')
 
 # Questions and changes
 
