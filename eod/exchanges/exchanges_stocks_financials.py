@@ -7,8 +7,10 @@ Created on Tue May 11 12:13:31 2021
 
 from eod.exchanges.bulk_eod_splits_divs_api import BulkMarketRequest
 from eod.exchanges.list_tickers_api import ExchangesAndTickers
+from eod.exchanges.trading_hours_market_holidays_api import MarketHoursHolidays
 
-class ExchangesAndMarkets(BulkMarketRequest,ExchangesAndTickers):
+class ExchangesAndMarkets(BulkMarketRequest, ExchangesAndTickers, MarketHoursHolidays):
     def __init__(self, api_key:str, timeout:int):
         BulkMarketRequest.__init__(self, api_key, timeout)
         ExchangesAndTickers.__init__(self, api_key, timeout)
+        MarketHoursHolidays.__init__(self, api_key, timeout)
