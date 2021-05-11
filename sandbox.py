@@ -11,6 +11,7 @@ import os
 api_key = os.environ['API_EOD']
 
 from eod import EodHistoricalData
+from random import randint
 
 client = EodHistoricalData(api_key)
 symbol='AAPL.US'
@@ -66,12 +67,15 @@ resp = client.get_bulk_markets(exchange='sn', filter_='extended')
 resp = client.get_exchanges()
 resp = client.get_exchange_symbols('IS')
 resp = client.get_exchange_details(exchange='LSE', from_='2020-12-20', to='2021-05-18')
-resp = client.get_financial_news(t='balance sheet')
+tags = client.get_financial_tags()
+resp = client.get_financial_news(t=tags[randint(a=0, b=len(tags))]) # choose a random tag
 
 
 # Questions and changes
 
 """
 1. The symbols query parameter for the bulk request is not working properly.
+2. Why there are no news for minor international exchanges?
+3. Why the are no holidays for minor international exchanges?
 
 """
