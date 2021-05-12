@@ -11,6 +11,7 @@ import os
 api_key = os.environ['API_EOD']
 
 from eod import EodHistoricalData
+from random import randint
 
 client = EodHistoricalData(api_key)
 symbol='AAPL.US'
@@ -19,7 +20,7 @@ corporate_bond = 'US00213MAS35.BOND'
 
 #%% Historical Prices, Splits and Dividends Data API testing 
 
-resp = client.get_stock_prices(symbol, period='d')
+resp = client.get_stock_prices('AAL.LSE', period='d')
 resp = client.get_stock_prices(goverment_bond, period='d')
 resp = client.get_stock_prices(corporate_bond, period='d')
 resp = client.get_live_prices(corporate_bond, s='GLD,QVAL')
@@ -29,6 +30,7 @@ resp = client.get_short_interest(symbol, to='2021-04-24')
 resp = client.get_intraday_data(symbol, interval='1m', from_='1620136800', to='1620414000')
 resp = client.get_stock_options(symbol)
 resp = client.get_stock_ta(symbol, function='sma', from_='2020-03-01', to='2021-05-07', period=10)
+
 
 # Questions and changes
 
@@ -56,5 +58,25 @@ resp = client.get_macro_indicator('CHL')
 
 """
 1. Consider to include a method to list all available macro indicators
+
+"""
+
+#%% Exchanges API's
+
+resp = client.get_bulk_markets(exchange='sn', filter_='extended')
+resp = client.get_exchanges()
+resp = client.get_exchange_symbols('IS')
+resp = client.get_exchange_details(exchange='LSE', from_='2020-12-20', to='2021-05-18')
+tags = client.get_financial_tags()
+resp = client.get_financial_news(t=tags[randint(a=0, b=len(tags))]) # choose a random tag
+resp = client.get_search_instrument(query_string='Latam', bonds_only=1)
+
+
+# Questions and changes
+
+"""
+1. The symbols query parameter for the bulk request is not working properly.
+2. Why there are no news for minor international exchanges?
+3. Why the are no holidays for minor international exchanges?
 
 """

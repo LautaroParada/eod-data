@@ -57,10 +57,25 @@ class RequestHandler():
         dict_to_append['fmt'] = 'json'
         dict_to_append['api_token'] = self.api_key
         
+        # from query parameter
         if 'from' in dict_to_append:
                 del dict_to_append['from']
                 
         if 'from_' in dict_to_append:
             dict_to_append['from'] = dict_to_append.pop('from_')
+        
+        # type query parameter
+        if 'type' in dict_to_append:
+                del dict_to_append['type']
+        
+        if 'type_' in dict_to_append:
+            dict_to_append['type'] = dict_to_append.pop('type_')
+            
+        # filter query parameter
+        if 'filter' in dict_to_append:
+                del dict_to_append['filter']
+        
+        if 'filter_' in dict_to_append:
+            dict_to_append['filter'] = dict_to_append.pop('filter_')
             
         return dict_to_append
