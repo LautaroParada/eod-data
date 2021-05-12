@@ -69,6 +69,7 @@ resp = client.get_exchange_symbols('IS')
 resp = client.get_exchange_details(exchange='LSE', from_='2020-12-20', to='2021-05-18')
 tags = client.get_financial_tags()
 resp = client.get_financial_news(t=tags[randint(a=0, b=len(tags))]) # choose a random tag
+resp = client.get_search_instrument(query_string='Latam', bonds_only=1)
 
 
 # Questions and changes
