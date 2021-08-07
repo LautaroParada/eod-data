@@ -49,6 +49,7 @@ DONE - 3. Does the option endpoint support options for bonds and other instrumen
 DONE - 5. Consider to include the full list of technical indicators as method.
 DONE - 6. Consider to include the filter fields -> stock prices eod and Technical indicators
 DONE - 7. Change the name of the get_stock_ta to get_instrument_ta, all instruments have ta available.
+8. There is an issue with the SPLITS api, contact the team.
 
 """
 
