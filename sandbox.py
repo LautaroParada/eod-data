@@ -70,6 +70,8 @@ resp = client.get_calendar_splits(from_='2016-01-01')
 # Macroeconomics Data and Macro Indicators API
 resp = client.get_macro_indicator_name()
 resp = client.get_macro_indicator('USA', indicator='real_interest_rate')
+# Insider Transactions API
+resp = client.get_insider_transactions(code='AAPL.US')
 
 
 # Questions and changes
@@ -77,9 +79,9 @@ resp = client.get_macro_indicator('USA', indicator='real_interest_rate')
 """
 DONE - 1. Consider to include a method to list all available macro indicators
 DONE - 2. Change the name of the method get_fundamental_stock to get_fundamental_equity
-3. Add the endpoint call related to insider transactions
-4. Check if the endpoint support the Filter Fields and WEBSERVICE support.
-5. Change the symbol to symbols parameters from the get_fundamental_bulk
+DONE - 3. Add the endpoint call related to insider transactions
+DONE - 4. Check if the endpoint support the Filter Fields and WEBSERVICE support.
+DONE - 5. Change the symbol to symbols parameters from the get_fundamental_bulk
 6. Contact the EOD team to check the bulk fundamentals api
 7. only the to parameter of the get_calendar earnings is not working
 
