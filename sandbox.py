@@ -23,13 +23,13 @@ corporate_bond = 'US00213MAS35.BOND'
 resp = client.get_stock_prices('AAL.LSE', period='d')
 resp = client.get_stock_prices(goverment_bond, period='d')
 resp = client.get_stock_prices(corporate_bond, period='d')
-resp = client.get_live_prices(corporate_bond, s='GLD,QVAL')
+resp = client.get_live_prices(corporate_bond, s='GLD,QVAL,QMOM')
 resp = client.get_dividends(symbol, from_='2020-03-01', to='2021-04-24')
-resp = client.get_splits(symbol, from_='1994-01-01', to='2021-04-24')
-resp = client.get_short_interest(symbol, to='2021-04-24')
+resp = client.get_splits(symbol, from_='1994-01-01', to='2021-04-24') # ERROR
+resp = client.get_short_interest(symbol, to='2021-06-30')
 resp = client.get_intraday_data(symbol, interval='1m', from_='1620136800', to='1620414000')
 resp = client.get_stock_options(symbol)
-resp = client.get_stock_ta(symbol, function='sma', from_='2020-03-01', to='2021-05-07', period=10)
+resp = client.get_stock_ta(symbol, function='sma', from_='2020-03-01', to='2021-06-30', period=50)
 
 
 # Questions and changes
@@ -47,7 +47,7 @@ resp = client.get_stock_ta(symbol, function='sma', from_='2020-03-01', to='2021-
 
 resp = client.get_fundamentals_stock(symbol)
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
-resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2021-12-31')
+resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2021-06-30')
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA')
 resp = client.get_calendar_ipos()
 resp = client.get_calendar_splits()
