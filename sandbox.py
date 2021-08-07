@@ -35,7 +35,8 @@ resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800'
 # Options Data API
 resp = client.get_stock_options('AAPL') # Only for stocks - check
 # Technical Indicator API
-resp = client.get_stock_ta('EUR.FOREX', function='sma', from_='2020-03-01', to='2021-06-30', period=50, filter_='last_ema')
+resp = client.get_indicator_name()
+resp = client.get_instrument_ta('AAPL', function='sar', from_='2020-03-01', to='2021-06-30', period=50, filter_='last_sar')
 
 
 # Questions and changes
@@ -43,11 +44,11 @@ resp = client.get_stock_ta('EUR.FOREX', function='sma', from_='2020-03-01', to='
 """
 DONE - 1. Change the get_stock_prices to get_prices_eod -> all the supported assets can be requested with this endpoint.
 DONE - 2. Change get_stock_prices, get_live_prices and get_intraday_data to get_prices_something -> its the standard.
-3. Does the option endpoint support options for bonds and other instruments? -> NO
+DONE - 3. Does the option endpoint support options for bonds and other instruments? -> NO
 4. Check the from and to parameters of the get_stock_options endpoint
-5. Consider to include the full list of technical indicators as method.
-6. Consider to include the filter fields -> stock prices eod and Technical indicators
-7. Change the name of the get_stock_ta to get_instrument_ta, all instruments have ta available.
+DONE - 5. Consider to include the full list of technical indicators as method.
+DONE - 6. Consider to include the filter fields -> stock prices eod and Technical indicators
+DONE - 7. Change the name of the get_stock_ta to get_instrument_ta, all instruments have ta available.
 
 """
 
