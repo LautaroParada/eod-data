@@ -55,11 +55,12 @@ DONE - 7. Change the name of the get_stock_ta to get_instrument_ta, all instrume
 
 #%% Fundamental and economic financial data
 
-resp = client.get_fundamentals_stock(symbol, filter_='Financials::Balance_Sheet::quarterly') # Stock - check
-resp = client.get_fundamentals_stock('QVAL.US') # ETF - check
-resp = client.get_fundamentals_stock('SWPPX.US') # Mutual Fund - check
-resp = client.get_fundamentals_stock('GSPC.INDX') # Index - check
-resp = client.get_fundamentals_bulk(exchange='amex', limit=1000)
+# Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
+resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet::quarterly') # Stock - check
+resp = client.get_fundamental_equity('QVAL.US') # ETF - check
+resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund - check
+resp = client.get_fundamental_equity('GSPC.INDX') # Index - check
+resp = client.get_fundamentals_bulk(exchange='amex', limit=1000) # ERROR
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2020-12-01') # check
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA') # check
@@ -73,8 +74,8 @@ resp = client.get_macro_indicator('USA', indicator='real_interest_rate')
 # Questions and changes
 
 """
-1. Consider to include a method to list all available macro indicators
-2. Change the name of the method get_fundamental_stock to get_fundamental_equity
+DONE - 1. Consider to include a method to list all available macro indicators
+DONE - 2. Change the name of the method get_fundamental_stock to get_fundamental_equity
 3. Add the endpoint call related to insider transactions
 4. Check if the endpoint support the Filter Fields and WEBSERVICE support.
 5. Change the symbol to symbols parameters from the get_fundamental_bulk
