@@ -35,7 +35,7 @@ class StockEtfFundsIndexFundamentalData(RequestHandler):
         self.endpoint = self.URL_FUNDAMENTAL + symbol.upper()
         return super().handle_request(self.endpoint, query_params)
     
-    def get_fundamentals_bulk(self, symbol:str, **query_params):
+    def get_fundamentals_bulk(self, exchange:str, **query_params):
         """
         With this endpoint you able to download fundamental data for thousands 
         of companies in one request. It supports only stocks and doesn’t 
@@ -61,7 +61,7 @@ class StockEtfFundsIndexFundamentalData(RequestHandler):
             DESCRIPTION.
 
         """
-        self.endpoint = self.URL_BULK_FUNDAMENTALS + symbol.upper()
+        self.endpoint = self.URL_BULK_FUNDAMENTALS + exchange.upper()
         return super().handle_request(self.endpoint, query_params)
     
     def get_fundamentals_bonds(self, cusip:str, **query_params):

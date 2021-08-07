@@ -12,6 +12,8 @@ class MacroEconomicIndicators(RequestHandler):
         self.URL_MACRO = 'https://eodhistoricaldata.com/api/macro-indicator/'
         super().__init__(api_key, timeout)
         
+        #List of available macroeconomic indicators
+        
     def get_macro_indicator(self, country:str, **query_params):
         """
         Get data for more than 30 macro indicators such as GDP, unemployment 
