@@ -13,7 +13,7 @@ class LiveStockPrices(RequestHandler):
         self.URL_LIVE_STOCKS = 'https://eodhistoricaldata.com/api/real-time/'
         super().__init__(api_key, timeout)
         
-    def get_live_prices(self, symbol:str, **query_params):
+    def get_prices_live(self, symbol:str, **query_params):
         """
         Live (delayed) stock prices API for all subscribers of 'All-World', 
         'All World Extended', and 'ALL-IN-ONE' plans. With this API endpoint, 
