@@ -15,7 +15,7 @@ class StockEtfFundsIndexFundamentalData(RequestHandler):
         self.URL_BONDS_FUNDAMENTALS = 'https://eodhistoricaldata.com/api/bond-fundamentals/'
         super().__init__(api_key, timeout)
         
-    def get_fundamentals_stock(self, symbol:str, **query_params):
+    def get_fundamental_equity(self, symbol:str, **query_params):
         """
         Get fundamental data for the requested stock, etf, fund or index.
 
@@ -35,7 +35,7 @@ class StockEtfFundsIndexFundamentalData(RequestHandler):
         self.endpoint = self.URL_FUNDAMENTAL + symbol.upper()
         return super().handle_request(self.endpoint, query_params)
     
-    def get_fundamentals_bulk(self, symbol:str, **query_params):
+    def get_fundamentals_bulk(self, exchange:str, **query_params):
         """
         With this endpoint you able to download fundamental data for thousands 
         of companies in one request. It supports only stocks and doesn’t 
@@ -61,7 +61,7 @@ class StockEtfFundsIndexFundamentalData(RequestHandler):
             DESCRIPTION.
 
         """
-        self.endpoint = self.URL_BULK_FUNDAMENTALS + symbol.upper()
+        self.endpoint = self.URL_BULK_FUNDAMENTALS + exchange.upper()
         return super().handle_request(self.endpoint, query_params)
     
     def get_fundamentals_bonds(self, cusip:str, **query_params):
