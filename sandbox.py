@@ -62,6 +62,7 @@ resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund - check
 resp = client.get_fundamental_equity('GSPC.INDX') # Index - check
 resp = client.get_fundamentals_bulk(exchange='amex', limit=1000) # ERROR
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
+# Calendar. Upcoming Earnings, Trends, IPOs and Splits
 resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2020-12-01') # check
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA') # check
 resp = client.get_calendar_ipos(from_='2016-01-01') # check
