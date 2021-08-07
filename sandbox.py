@@ -21,9 +21,9 @@ corporate_bond = 'US00213MAS35.BOND'
 #%% Historical Prices, Splits and Dividends Data API testing 
 
 # Stock Price Data API (End-Of-Day Historical Data)
-resp = client.get_stock_prices('AAL.LSE', period='m', order='a') # stock prices - check
-resp = client.get_stock_prices(goverment_bond, period='d')
-resp = client.get_stock_prices(corporate_bond, period='d')
+resp = client.get_prices_eod('AAL.LSE', period='m', order='a') # stock prices - check
+# resp = client.get_stock_prices(goverment_bond, period='d')
+# resp = client.get_stock_prices(corporate_bond, period='d')
 # Live (Delayed) Stock Prices API
 resp = client.get_live_prices(corporate_bond, s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GBOND,US00213MAS35.BOND') # live prices - check
 # Historical Splits, Dividends and Short Interest API
@@ -41,7 +41,7 @@ resp = client.get_stock_ta('EUR.FOREX', function='sma', from_='2020-03-01', to='
 # Questions and changes
 
 """
-1. Change the get_stock_prices to get_prices_eod -> all the supported assets can be requested with this endpoint.
+DONE - 1. Change the get_stock_prices to get_prices_eod -> all the supported assets can be requested with this endpoint.
 2. Change get_stock_prices, get_live_prices and get_intraday_data to get_prices_something -> its the standard.
 3. Does the option endpoint support options for bonds and other instruments? -> NO
 4. Check the from and to parameters of the get_stock_options endpoint
