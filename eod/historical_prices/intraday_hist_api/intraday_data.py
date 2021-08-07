@@ -12,7 +12,7 @@ class IntradayStockData(RequestHandler):
         self.URL_INTRADAY_STOCKS = 'https://eodhistoricaldata.com/api/intraday/'
         super().__init__(api_key, timeout)
         
-    def get_intraday_data(self, symbol:str, **query_params):
+    def get_prices_intraday(self, symbol:str, **query_params):
         """
         Get intraday historical stock price data.
 

@@ -13,9 +13,9 @@ class StockPriceData(RequestHandler):
         self.URL_STOCK_PRICES = 'https://eodhistoricaldata.com/api/eod/'
         super().__init__(api_key, timeout)
         
-    def get_stock_prices(self, symbol:str, **query_params):
+    def get_prices_eod(self, symbol:str, **query_params):
         """
-        Get historical stock price data
+        Get historical stocks, bonds and forex price data
 
         Parameters
         ----------
