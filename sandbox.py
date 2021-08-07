@@ -65,7 +65,9 @@ resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2020-12
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA') # check
 resp = client.get_calendar_ipos(from_='2016-01-01') # check
 resp = client.get_calendar_splits(from_='2016-01-01')
-resp = client.get_macro_indicator('CHL', indicator='fertility_rate')
+# Macroeconomics Data and Macro Indicators API
+resp = client.get_macro_indicator_name()
+resp = client.get_macro_indicator('USA', indicator='real_interest_rate')
 
 
 # Questions and changes
