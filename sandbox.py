@@ -102,6 +102,8 @@ tags = client.get_financial_tags() # check
 resp = client.get_financial_news(s='VAPORES.SN') # choose a random tag - check
 # Search API for Stocks, ETFs, Mutual Funds and Indices
 resp = client.get_search_instrument(query_string='Chile', bonds_only=1) # check
+# Stock Market Screener API
+resp = client.get_instrument_screener(signal='wallstreet_lo')
 
 
 # Questions and changes
