@@ -115,11 +115,17 @@ resp = client.get_instrument_ta('AAPL', function='sar', from_='2020-03-01', to='
 ```python
 resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800', to='1620414000')
 ```
-- **Options Data API**
+- **Options Data API**:  Stock options data for top US stocks from NYSE and NASDAQ, the data for Options starts from April 2018. Options data is updated daily; however, the API does not provide a history for options contracts prices or other related data. That means: for each contract, there is only the current price, bid/ask, etc. For example, the data for AAPL on May 7th, 2021, the API has 2439 PUT and CALL option contracts in the database. 
+1. **IMPORTANT!** For backward compatibility, you should use the ```from_``` parameter with any value before the expiration date, the API recommends '2000-01-01'. 
+2. **Note**: option greeks and some additional value are available only for options with expiration date Feb 15, 2019, or later.
 	- Parameters:
+		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+		- ```contract_name```(str): Optional - Name of a particular contract.
+		- ```trade_date_to```(str): Optional - filters OPTIONS by lastTradeDateTime. Default value: NONE.
 	- Usage:
 ```python
-
+resp = client.get_stock_options('AAPL.US')
 ```
 ### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
 - **Insider Transactions API**
