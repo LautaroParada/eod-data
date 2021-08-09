@@ -90,11 +90,21 @@ resp = client.get_short_interest('AAPL.US')
 # Get the splits for a company
 resp = client.get_splits('AAPL.US', from_='1994-01-01', to='2020-10-24')
 ```
-- **Technical Indicator API**
+- **Technical Indicator API**: Retrieve technical data associated with the price action of an instrument. The data is mainly oriented to technical indicators rather than any other methodology (e.g., Elliot Waves, Wyckoff, etc.)
 	- Parameters:
+		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```function```(str): Required - The function that will be applied to data series to get technical indicator data.
+		- ```period```(int): Optional - The number of data points used to calculate each indicator value. Valid range from 2 to 100000 with the default value is 50.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+		- ```order```(str): Optional – Use 'a' for ascending dates (from old to new) and 'd' for descending dates (from new to old). By default, dates are shown in ascending order.
+		- ```splitadjusted_only```(int): Optional – The default value is 0. By default, the API calculates data for some functions by closes adjusted with splits and dividends. If you need to calculate the data by closes adjusted only with splits, set this parameter to 1. Works with the following functions: sma, ema, wma, volatility, rsi, slope, and macd.
+		- ```filter_```(str): Optional - Ability to get only the last value. The syntax is the following: last_indicator_name, for instance, last_ema, last_volume, etc.
 	- Usage:
 ```python
-
+# Get the available indicators in the API. This method does not accept any parameter.
+resp = client.get_indicator_name()
+# Get data for a specific indicator, in this case the parabolic SAR
+resp = client.get_instrument_ta('AAPL', function='sar', from_='2020-03-01', to='2021-06-30', period=50, filter_='last_sar')
 ```
 - **Intraday Historical Data API**
 	- Parameters:
