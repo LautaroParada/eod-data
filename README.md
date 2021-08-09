@@ -42,21 +42,21 @@ pip install #define a catchy name
 ## Documentation [:arrow_up:](#eod-historical-data-sdk)
 Please be aware that some descriptions will come directly from the API's documentation because no further explanations were needded for the specific method.
 
-### Historical Prices, Splits and Dividends Data APIs
+### Historical Prices, Splits and Dividends Data APIs [:arrow_up:](#eod-historical-data-sdk)
 - Stock Price Data API (End-Of-Day Historical Data)
 - Live (Delayed) Stock Prices API
 - Historical Splits, Dividends and Short Interest API
 - Technical Indicator API
 - Intraday Historical Data API
 - Options Data API
-### Fundamental and Economic Financial Data APIs
+### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
 - Insider Transactions API
 - Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
 - Calendar. Upcoming Earnings, Trends, IPOs and Splits
 - Macroeconomics Data and Macro Indicators API
 - Economic Data API
 - Bonds Fundamentals and Historical API
-### Exchanges Financial APIs
+### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
 - Bulk API for EOD, Splits and Dividends
 - Exchanges API. Get List of Tickers
 - Exchanges API. Trading Hours and Market Holidays
