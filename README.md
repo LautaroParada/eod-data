@@ -12,9 +12,9 @@
 3. [Installation](#installation-arrow_up)
 4. [Demo](#demo-arrow_up)
 5. [Documentation](#documentation-arrow_up)
-	- Historical Prices, Splits and Dividends Data APIs
-	- Fundamental and Economic Financial Data APIs
-	- Exchanges Financial APIs
+	- [Historical Prices, Splits and Dividends Data APIs](#historical-prices-splits-and-dividends-data-apis-arrow_up)
+	- [Fundamental and Economic Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
+	- [Exchanges Financial APIs](#exchanges-financial-apis-arrow_up)
 6. [Disclaimer](#disclaimer-arrow_up)
 
 ## General description [:arrow_up:](#eod-historical-data-sdk)
@@ -40,29 +40,50 @@ pip install #define a catchy name
 ```
 
 ## Documentation [:arrow_up:](#eod-historical-data-sdk)
-Please be aware that some descriptions will come directly from the API's documentation because no further explanations were needded for the specific method.
+Please be aware that some descriptions will come directly from the API's documentation because no further explanations were needed for the specific method. Additionally, for the sake of simplicity, I will use the following convention along with the whole document: 
+
+```python
+
+import # catchy library name
+# create the instance of the SDK
+client = EodHistoricalData(api_key)
+```
 
 ### Historical Prices, Splits and Dividends Data APIs [:arrow_up:](#eod-historical-data-sdk)
-- Stock Price Data API (End-Of-Day Historical Data)
-- Live (Delayed) Stock Prices API
-- Historical Splits, Dividends and Short Interest API
-- Technical Indicator API
-- Intraday Historical Data API
-- Options Data API
+- **Stock Price Data API (End-Of-Day Historical Data)**: Retrieve end-of-day data for Stocks, ETFs, Mutual Funds, Bonds (Government and Corporate), Cryptocurrencies, and FOREX pairs.
+	- Parameters:
+		- ```symbol```(str): Required - 
+		- ```period```(str): Optional - Use 'd' for daily, 'w' for weekly, 'm' for monthly prices. By default, daily prices will be shown.
+		- ```order```(str): Optional - Use 'a' for ascending dates (from old to new), 'd' for descending dates (from new to old). By default, dates are shown in ascending order.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+	- Usage:
+```python
+# AngloAmerican stock that trades in the London Stock Exchange
+resp = client.get_prices_eod('AAL.LSE', period='d', order='a', from_='2017-01-05')
+# Swiss goverment Bond
+resp = client.get_prices_eod('SW10Y.GBOND', period='w')
+# Corportae Bond
+resp = client.get_prices_eod('US00213MAS35.BOND')
+```
+- **Live (Delayed) Stock Prices API**
+- **Historical Splits, Dividends and Short Interest API**
+- **Technical Indicator API**
+- **Intraday Historical Data API**
+- **Options Data API**
 ### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
-- Insider Transactions API
-- Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
-- Calendar. Upcoming Earnings, Trends, IPOs and Splits
-- Macroeconomics Data and Macro Indicators API
-- Economic Data API
-- Bonds Fundamentals and Historical API
+- **Insider Transactions API**
+- **Fundamental Data: Stocks, ETFs, Mutual Funds, Indices**
+- **Calendar. Upcoming Earnings, Trends, IPOs and Splits**
+- **Macroeconomics Data and Macro Indicators API**
+- **Economic Data API**
+- **Bonds Fundamentals and Historical API**
 ### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
-- Bulk API for EOD, Splits and Dividends
-- Exchanges API. Get List of Tickers
-- Exchanges API. Trading Hours and Market Holidays
-- Financial News API
-- Stock Market Screener API
-- Search API for Stocks, ETFs, Mutual Funds and Indices
+- **Bulk API for EOD, Splits and Dividends**
+- **Exchanges API. Get List of Tickers**
+- **Exchanges API. Trading Hours and Market Holidays**
+- **Financial News API**
+- **Stock Market Screener API**
+- **Search API for Stocks, ETFs, Mutual Funds and Indices**
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
 
