@@ -77,11 +77,18 @@ resp = client.get_prices_live('AAL.LSE', filter_='close')
 # Multple instruments
 resp = client.get_prices_live('AAL.LSE', s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GBOND')
 ```
-- **Historical Splits, Dividends and Short Interest API**
+- **Historical Splits, Dividends and Short Interest API**: Get the historical dividends, splits, and short interest for any stock.
 	- Parameters:
+		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
 	- Usage:
 ```python
-
+# Get dividend data
+resp = client.get_dividends('AAPL.US', from_='2000-03-01')
+# Get short interest data (indicates how many shares of a company are currently sold short and not yet covered. Indicates the sentiment around a company)
+resp = client.get_short_interest('AAPL.US')
+# Get the splits for a company
+resp = client.get_splits('AAPL.US', from_='1994-01-01', to='2020-10-24')
 ```
 - **Technical Indicator API**
 	- Parameters:
@@ -178,6 +185,6 @@ resp = client.get_prices_live('AAL.LSE', s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GB
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
 
-The information in this document is for informational and educational purposes only. Nothing in this document may be construed as financial, legal or tax advice. The content of this document is solely the opinion of the author, who is not a licensed financial advisor or registered investment advisor. The author is not affiliated as a promoter of EOD Historical Data services.
+The information in this document is for informational and educational purposes only. Nothing in this document can be construed as financial, legal, or tax advice. The content of this document is solely the opinion of the author, who is not a licensed financial advisor or registered investment advisor. The author is not affiliated as a promoter of EOD Historical Data services.
 
 This document is not an offer to buy or sell financial instruments. Never invest more than you can afford to lose. You should consult a registered professional advisor before making any investment.
