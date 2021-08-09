@@ -107,7 +107,7 @@ resp = client.get_search_instrument(query_string='Chile', bonds_only=1) # check
 # Questions and changes
 
 """
-1. The symbols query parameter for the bulk request is not working properly.
+DONE - 1. The symbols query parameter for the bulk request is not working properly.
 2. Why there are no news for minor international exchanges?
 3. Why the are no holidays for minor international exchanges?
 4. Monitor the updates of the financial tags on a monthly basis.
