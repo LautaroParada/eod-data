@@ -23,7 +23,7 @@ corporate_bond = 'US00213MAS35.BOND'
 # Stock Price Data API (End-Of-Day Historical Data)
 resp = client.get_prices_eod('AAL.LSE', period='m', order='a') # stock prices - check
 resp = client.get_prices_eod(goverment_bond, period='m')
-resp = client.get_prices_eod(corporate_bond, period='d')
+resp = client.get_prices_eod(corporate_bond)
 # Live (Delayed) Stock Prices API
 resp = client.get_prices_live(corporate_bond, s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GBOND,US00213MAS35.BOND') # live prices - check
 # Historical Splits, Dividends and Short Interest API

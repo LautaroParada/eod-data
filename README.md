@@ -65,25 +65,116 @@ resp = client.get_prices_eod('SW10Y.GBOND', period='w')
 # Corportae Bond
 resp = client.get_prices_eod('US00213MAS35.BOND')
 ```
-- **Live (Delayed) Stock Prices API**
+- **Live (Delayed) Stock Prices API**: The method supports almost all symbols and exchanges worldwide, and the prices provided have a 15-20 minutes delay. The method can also provide combinations of multiple tickers with just one request. The only supported interval is the 1-minute interval. The UNIX standard is used for the timestamp.
+	- Parameters:
+		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```s```(str): Optional - Additional instruments to retrieve data.
+		- ```filter_```(str): Optional - Name of the field to retrieve, check the response for the available fields.
+	- Usage:
+```python
+# One instrument
+resp = client.get_prices_live('AAL.LSE', filter_='close')
+# Multple instruments
+resp = client.get_prices_live('AAL.LSE', s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GBOND')
+```
 - **Historical Splits, Dividends and Short Interest API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Technical Indicator API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Intraday Historical Data API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Options Data API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 ### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
 - **Insider Transactions API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Fundamental Data: Stocks, ETFs, Mutual Funds, Indices**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Calendar. Upcoming Earnings, Trends, IPOs and Splits**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Macroeconomics Data and Macro Indicators API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Economic Data API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Bonds Fundamentals and Historical API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 ### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
 - **Bulk API for EOD, Splits and Dividends**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Exchanges API. Get List of Tickers**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Exchanges API. Trading Hours and Market Holidays**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Financial News API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Stock Market Screener API**
+	- Parameters:
+	- Usage:
+```python
+
+```
 - **Search API for Stocks, ETFs, Mutual Funds and Indices**
+	- Parameters:
+	- Usage:
+```python
+
+```
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
 
