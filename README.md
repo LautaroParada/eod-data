@@ -7,11 +7,11 @@
 
 # Contents
 
-1. [General description]()
-2. [Requirements]()
-3. [Installation]()
-4. [Demo]()
-5. [Documentation]()
+1. [General description](#general-description-arrow_up)
+2. [Requirements](#requirements-arrow_up)
+3. [Installation](#installation-arrow_up)
+4. [Demo](#demo-arrow_up)
+5. [Documentation](#documentation-arrow_up)
 	- Historical Prices, Splits and Dividends Data APIs
 		- Stock Price Data API (End-Of-Day Historical Data)
 		- Live (Delayed) Stock Prices API
@@ -33,31 +33,31 @@
 		- Financial News API
 		- Stock Market Screener API
 		- Search API for Stocks, ETFs, Mutual Funds and Indices
-6. [Disclaimer]()
+6. [Disclaimer](#disclaimer-arrow_up)
 
-## General description [:arrow_up:]
+## General description [:arrow_up:](#eod-historical-data-sdk)
 This library is the Python 🐍 unofficial SDK for the EOD Historical data REST API. It's intended to be used for data extraction for financial valuations, macroeconomic analyses, sentiment analysis, option strategies, technical analysis, development of machine learning models, and more!
 
-## Requirements [:arrow_up:]
+## Requirements [:arrow_up:](#eod-historical-data-sdk)
 - You need to request an API key with the EOD team. Create your account in the following [link](https://eodhistoricaldata.com/)
 	- ***Please be aware of the pricing plans and policies. Different plans have different data accesses.***
 - ```Python``` >= 3.8
 
-## Installation [:arrow_up:]
+## Installation [:arrow_up:](#eod-historical-data-sdk)
 
 ```python
 pip install #define a catchy name
 ```
 
-## Demo [:arrow_up:]
+## Demo [:arrow_up:](#eod-historical-data-sdk)
 
 ```python
 
 ```
 
-## Documentation [:arrow_up:]
+## Documentation [:arrow_up:](#eod-historical-data-sdk)
 
-## Disclaimer [:arrow_up:]
+## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
 
 The information in this document is for informational and educational purposes only. Nothing in this document may be construed as financial, legal or tax advice. The content of this document is solely the opinion of the author, who is not a licensed financial advisor or registered investment advisor. The author is not affiliated as a promoter of EOD Historical Data services.
 
