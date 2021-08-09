@@ -106,11 +106,14 @@ resp = client.get_indicator_name()
 # Get data for a specific indicator, in this case the parabolic SAR
 resp = client.get_instrument_ta('AAPL', function='sar', from_='2020-03-01', to='2021-06-30', period=50, filter_='last_sar')
 ```
-- **Intraday Historical Data API**
+- **Intraday Historical Data API**: Get intraday historical stock price data for US (NYSE and NASDAQ), Canada, and MOEX tickers. The 1-minute interval includes the pre-market and after-hours trading data from 2004 (more than 15 years of the data), and for the 5-minute intervals, the data starts from October 2020. For other tickers (mainly for international instruments), it is only available the 5-minute intervals and only from October 2020.
 	- Parameters:
+		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```interval```(str): Required - use '5m' for 5-minutes intervals and '1m' for 1-minute intervals.
+		- ```from_```(str) and ```to```(str): Optional - Use these parameters to filter data by datetime. Parameters should be passed in UNIX time with UTC timezone, for example, these values are correct: 'from_=1564752900' and 'to=1564753200' and correspond to '2019-08-02 13:35:00' and '2019-08-02 13:40:00'. The maximum period between 'from_' and 'to' is 100 days. Try this site to converte dates into UNIX https://www.unixtimestamp.com/index.php
 	- Usage:
 ```python
-
+resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800', to='1620414000')
 ```
 - **Options Data API**
 	- Parameters:
