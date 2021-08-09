@@ -94,12 +94,12 @@ DONE - 5. Change the symbol to symbols parameters from the get_fundamental_bulk
 resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
 # Exchanges API. Get List of Tickers
 resp = client.get_exchanges() # Get List of Exchanges - check
-resp = client.get_exchange_symbols('NYSE MKT') # Get List of Tickers (Exchange Symbols) - check
+resp = client.get_exchange_symbols('SN') # Get List of Tickers (Exchange Symbols) - check
 # Exchanges API. Trading Hours and Market Holidays
-resp = client.get_exchange_details(exchange='US') # check
+resp = client.get_exchange_details(exchange='SN') # check
 # Financial News API
 tags = client.get_financial_tags() # check
-resp = client.get_financial_news(t=tags[randint(a=0, b=len(tags))]) # choose a random tag - check
+resp = client.get_financial_news(s='VAPORES.SN') # choose a random tag - check
 # Search API for Stocks, ETFs, Mutual Funds and Indices
 resp = client.get_search_instrument(query_string='Chile', bonds_only=1) # check
 
@@ -108,7 +108,7 @@ resp = client.get_search_instrument(query_string='Chile', bonds_only=1) # check
 
 """
 DONE - 1. The symbols query parameter for the bulk request is not working properly.
-2. Why there are no news for minor international exchanges?
+DONE - 2. Why there are no news for minor international exchanges?
 3. Why the are no holidays for minor international exchanges?
 4. Monitor the updates of the financial tags on a monthly basis.
 5. Try to implement the Stock Market Screener API
