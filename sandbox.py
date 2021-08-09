@@ -103,7 +103,8 @@ resp = client.get_financial_news(s='VAPORES.SN') # choose a random tag - check
 # Search API for Stocks, ETFs, Mutual Funds and Indices
 resp = client.get_search_instrument(query_string='Chile', bonds_only=1) # check
 # Stock Market Screener API
-resp = client.get_instrument_screener(signal='wallstreet_lo')
+resp = client.get_screener_signals()
+resp = client.get_instrument_screener(signals='200d_new_hi,wallstreet_hi')
 
 
 # Questions and changes
@@ -113,6 +114,6 @@ DONE - 1. The symbols query parameter for the bulk request is not working proper
 DONE - 2. Why there are no news for minor international exchanges?
 DONE - 3. Why the are no holidays for minor international exchanges?
 4. Monitor the updates of the financial tags on a monthly basis.
-5. Try to implement the Stock Market Screener API
+PARTIALLY - 5. Try to implement the Stock Market Screener API
 
 """
