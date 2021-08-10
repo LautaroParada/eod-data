@@ -187,11 +187,20 @@ resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 ```
 ### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
-- **Bulk API for EOD, Splits and Dividends**
+- **Bulk API for EOD, Splits and Dividends**: This method allows you to easily download the data for the entire exchange for a particular day. It works for end-of-day historical data feed and splits and dividends data as well. For US tickers you can also use NYSE or NASDAQ as exchange symbols to get data only for NYSE or NASDAQ exchange. With this method is no longer necessary to perform thousands and thousands of API requests per day.
 	- Parameters:
+		- ```type_```(str): Optional - Which type of data to return. The available options are ```'splits'``` or ```'dividends'```. If it's blank, the default response will be the market end-of-day data.
+		- ```date```(str): Optional - By default, the data for last trading day will be downloaded, but if you need any specific date enter a date with the following format YYYY-MM-DD
+		- ```symbols```(str): Optional - Name of the instrument(s) to retrieve data.
+		- ```filter_```(str): Optional - Extended the end-of-day market data to include technicals by using ```'extended'```. By default the value is blank.
 	- Usage:
 ```python
-
+# Request end-of-day data for the Santiago of Chile exchange.
+resp = client.get_bulk_markets(exchange='SN')
+# Request the latest dividends for the companies that trade in NYSE.
+resp = client.get_bulk_markets(exchange='NYSE', type_='dividends')
+# Request market and extended data for the selected US symbols.
+resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
 ```
 - **Exchanges API. Get List of Tickers**
 	- Parameters:
