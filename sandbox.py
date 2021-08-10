@@ -94,7 +94,7 @@ DONE - 5. Change the symbol to symbols parameters from the get_fundamental_bulk
 resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
 # Exchanges API. Get List of Tickers
 resp = client.get_exchanges() # Get List of Exchanges - check
-resp = client.get_exchange_symbols('SN') # Get List of Tickers (Exchange Symbols) - check
+resp = client.get_exchange_symbols(exchange='SN') # Get List of Tickers (Exchange Symbols) - check
 # Exchanges API. Trading Hours and Market Holidays
 resp = client.get_exchange_details(exchange='LSE') # check
 # Financial News API
