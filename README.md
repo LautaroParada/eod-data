@@ -179,11 +179,12 @@ resp = client.get_macro_indicator_name()
 # Request the Chilean interest rate
 resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 ```
-- **Bonds Fundamentals and Historical API**
+- **Bonds Fundamentals API**: Bond covenants details.
 	- Parameters:
+		- ```cusip```(str): Required - CUSIP of a particular bond, it’s also could be an ISIN. Other IDs are not supported at the moment.
 	- Usage:
 ```python
-
+resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 ```
 ### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
 - **Bulk API for EOD, Splits and Dividends**

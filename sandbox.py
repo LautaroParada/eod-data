@@ -69,7 +69,7 @@ resp = client.get_calendar_ipos(from_='2016-01-01') # check
 resp = client.get_calendar_splits(from_='2016-01-01')
 # Macroeconomics Data and Macro Indicators API
 resp = client.get_macro_indicator_name()
-resp = client.get_macro_indicator('USA', indicator='real_interest_rate')
+resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 # Insider Transactions API
 resp = client.get_insider_transactions(limit=100)
 
