@@ -71,7 +71,7 @@ resp = client.get_calendar_splits(from_='2016-01-01')
 resp = client.get_macro_indicator_name()
 resp = client.get_macro_indicator('USA', indicator='real_interest_rate')
 # Insider Transactions API
-resp = client.get_insider_transactions(code='AAPL.US')
+resp = client.get_insider_transactions(limit=100)
 
 
 # Questions and changes
