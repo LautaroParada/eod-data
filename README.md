@@ -202,11 +202,15 @@ resp = client.get_bulk_markets(exchange='NYSE', type_='dividends')
 # Request market and extended data for the selected US symbols.
 resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
 ```
-- **Exchanges API. Get List of Tickers**
+- **Exchanges API. Get List of Tickers**: Request available exchanges, and instruments for each exchange or market.
 	- Parameters:
+		- ```exchange```(str): Required - Name of the exchange or market to request symbols. This parameter is only valid for especif exchanges, check the usage for details.
 	- Usage:
 ```python
-
+# Get List of available exchanges, this method does not allow any parameter.
+resp = client.get_exchanges()
+# Get List of Tickers for Borsa Italiana Certificates
+resp = client.get_exchange_symbols(exchange='ETLX')
 ```
 - **Exchanges API. Trading Hours and Market Holidays**
 	- Parameters:
