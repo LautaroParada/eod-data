@@ -148,16 +148,25 @@ resp = client.get_insider_transactions(code='AAPL.US')
 	- Usage:
 ```python
 resp = client.get_fundamental_equity('QVAL.US') # ETF
-resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet::quarterly') # Stock - request the quarterly statements
-resp = client.get_fundamental_equity(symbol, filter_='General::Code,General,Earnings') # Stock - Request specific fields from the General layer
+resp = client.get_fundamental_equity('AAPL.US', filter_='Financials::Balance_Sheet::quarterly') # Stock - request the quarterly statements
+resp = client.get_fundamental_equity('AAPL.US', filter_='General::Code,General,Earnings') # Stock - Request specific fields from the General layer
 resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund
 resp = client.get_fundamental_equity('GSPC.INDX') # Index
 ```
 - **Calendar. Upcoming Earnings, Trends, IPOs and Splits**
 	- Parameters:
+		- ```symbols```(str): Required - You can request specific symbols to get historical and upcoming data. If ```symbols``` used, then ```from_``` and ```to``` parameters will be ignored. You can use one symbol: ```'AAPL.US'``` or several symbols separated by a comma: ```'AAPL.US,MS'```. For the IPOs and the Splits, the ```symbols``` parameter **is not required**.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
 	- Usage:
 ```python
-
+# Upcoming Earnings
+resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2020-12-01')
+# Earnings Trends
+resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA')
+# Upcoming IPOs
+resp = client.get_calendar_ipos(from_='2016-01-01')
+# Upcoming Splits
+resp = client.get_calendar_splits(from_='2016-01-01')
 ```
 - **Macroeconomics Data and Macro Indicators API**
 	- Parameters:
