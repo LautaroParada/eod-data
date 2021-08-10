@@ -46,6 +46,7 @@ Please be aware that some descriptions will come directly from the API's documen
 
 import # catchy library name
 # create the instance of the SDK
+api_key = 'YOUR_API_KEY_GOES_HERE'
 client = EodHistoricalData(api_key)
 ```
 
@@ -140,11 +141,17 @@ resp = client.get_insider_transactions()
 # Get insider transactions for a specific company
 resp = client.get_insider_transactions(code='AAPL.US')
 ```
-- **Fundamental Data: Stocks, ETFs, Mutual Funds, Indices**
+- **Fundamental Data: Stocks, ETFs, Mutual Funds, Indices**: Simple access to fundamental data API for stocks, ETFs, Mutual Funds, and Indices from different exchanges and countries. Almost all major US, UK, EU, India, and Asia exchanges.
 	- Parameters:
+		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```filter_```(str): Optional - Multi-layer filtering helps to reduce the output of the request. Different layers are divided with ```::``` and it’s possible to have as many layers as you need. Additionally, you can request multiple fields from a particular layer using ```,```. Be aware that the order of the layers is from the macro keys to the micro-level.
 	- Usage:
 ```python
-
+resp = client.get_fundamental_equity('QVAL.US') # ETF
+resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet::quarterly') # Stock - request the quarterly statements
+resp = client.get_fundamental_equity(symbol, filter_='General::Code,General,Earnings') # Stock - Request specific fields from the General layer
+resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund
+resp = client.get_fundamental_equity('GSPC.INDX') # Index
 ```
 - **Calendar. Upcoming Earnings, Trends, IPOs and Splits**
 	- Parameters:
