@@ -220,23 +220,49 @@ resp = client.get_exchange_symbols(exchange='ETLX')
 # Request the London Stock Exchange details
 resp = client.get_exchange_details(exchange='LSE')
 ```
-- **Financial News API**
+- **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and certain tickers with the given parameters. Despite that all parameters are optional, you need to input at least one of them, see the usage for guidance.
 	- Parameters:
+		- ```s```(str): Optional - The ticker code to get news for.
+		- ```t```(str): Optional - The tag to get news on a given topic. You can find the list of supported topics in the usage area.
+		- ```limit```(str): Optional - The number of results should be returned with the query. Default value: 50, minimum value: 1, maximum value: 1000.
+		- ```offset```(str): Optional - The offset of the data. Default value: 0, minimum value: 0, maximum value: 100. For example, to get 100 symbols starting from 200 you should use limit=100 and offset=200.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
 	- Usage:
 ```python
-
+# Get the available tags
+tags = client.get_financial_tags()
+import random
+specific_tag = random.choice(tags) # choose a random tag from the available list
+# Request the news from Anglo American
+resp = client.get_financial_news(s='AAL.LSE')
+# Request data for the selected tag
+resp = client.get_financial_news(t=specific_tag)
 ```
-- **Stock Market Screener API**
+- **Stock Market Screener API**: Filter stocks based on some criterias. ***THIS METHOD IS UNDER BETA MODE, ONLY THE SIGNALS PARAMETER WORKS, THE FILTERS IS NOT. PLEASE USE IT SEPARATELY***
 	- Parameters:
+		- ```filters```(--): **DO NOT USE THIS PARAMTER, IS UNDER REVISION**
+		- ```signals```(str): Required - Alert to use as a filter. The available options can be requested by the method ```get_screener_signals```.
+		- ```sort```(str): Optional - Sorts all fields with type Number in ascending/descending order. Usage: ```sort='field_name.(asc|desc)'```.
+		- ```limit```(str): Optional - The number of results should be returned with the query. Default value: 50, minimum value: 1, maximum value: 100.
+		- ```offset```(str): Optional - The offset of the data. Default value: 0, minimum value: 0, maximum value: 100. For example, to get 100 symbols starting from 200 you should use limit=100 and offset=200.
 	- Usage:
 ```python
-
+# Request available signals
+resp = client.get_screener_signals()
+# Request companies with a new 200 day new high and a price bigger than expected by wallstreet analysts.
+resp = client.get_instrument_screener(signals='200d_new_hi,wallstreet_hi')
 ```
-- **Search API for Stocks, ETFs, Mutual Funds and Indices**
+- **Search API for Stocks, ETFs, Mutual Funds and Indices**: Search instruments by phrases or keywords.
 	- Parameters:
+		- ```query_string```(str): Required - Could be any string with a ticker code or company name. Examples: ```'AAPL'```, ```'Apple Inc'```, ```'Apple'```. You can also use ISINs for the search: ```'US0378331005'```. There are no limitations to a minimum number of symbols in the query string.
+		- ```limit```(str): Optional - he number of results should be returned with the query. Default value: 15. If the limit is higher than 50, it will be automatically reset to 50.
+		- ```bonds_only```(int): Optional - The default value is 0 and search returns only stocks, ETFs, and funds. To get bonds in result use value 1: ```bonds_only=1```.
 	- Usage:
 ```python
-
+# Search instrument with the word .com
+resp = client.get_search_instrument(query_string='.com')
+# Search bonds related to Chile
+resp = client.get_search_instrument(query_string='Chile', bonds_only=1)
 ```
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
