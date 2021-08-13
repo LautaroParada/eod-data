@@ -129,11 +129,11 @@ resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800'
 resp = client.get_stock_options('AAPL.US')
 ```
 ### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
-- **Insider Transactions API**: The insider transactions API data is available for all US companies that report Form 4 to SEC. Insider trading involves trading in a public company’s stock by someone who has non-public, material information about that stock for any reason.
+- **Insider Transactions API**: The insider transactions API data is available for all US companies that report Form 4 to the SEC. Insider trading involves trading in a public company’s stock by someone who has non-public, material information about that stock for any reason.
 	- Parameters:
 		- ```code```(str): Optional - Name of the company to retrieve data. By default, all possible symbols will be displayed.
 		- ```limit```(int): Optional - The limit for entries per result, from 1 to 1000. Default value: 100.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
 	- Usage:
 ```python
 # Get the insider transactions for all companies
@@ -141,22 +141,24 @@ resp = client.get_insider_transactions()
 # Get insider transactions for a specific company
 resp = client.get_insider_transactions(code='AAPL.US')
 ```
-- **Fundamental Data: Stocks, ETFs, Mutual Funds, Indices**: Simple access to fundamental data API for stocks, ETFs, Mutual Funds, and Indices from different exchanges and countries. Almost all major US, UK, EU, India, and Asia exchanges.
+- **Fundamental Data: Stocks, ETFs, Mutual Funds, Indices**: Access to fundamental data API for stocks, ETFs, Mutual Funds, and Indices from different exchanges and countries. Almost all major US, UK, EU, India, LATAM, and Asia exchanges are available.
 	- Parameters:
 		- ```symbol```(str): Required - Name of the instrument to retrieve data.
 		- ```filter_```(str): Optional - Multi-layer filtering helps to reduce the output of the request. Different layers are divided with ```::``` and it’s possible to have as many layers as you need. Additionally, you can request multiple fields from a particular layer using ```,```. Be aware that the order of the layers is from the macro keys to the micro-level.
 	- Usage:
 ```python
 resp = client.get_fundamental_equity('QVAL.US') # ETF
-resp = client.get_fundamental_equity('AAPL.US', filter_='Financials::Balance_Sheet::quarterly') # Stock - request the quarterly statements
-resp = client.get_fundamental_equity('AAPL.US', filter_='General::Code,General,Earnings') # Stock - Request specific fields from the General layer
+# Stock - request the quarterly statements
+resp = client.get_fundamental_equity('AAPL.US', filter_='Financials::Balance_Sheet::quarterly')
+# Stock - Request specific fields from the General layer
+resp = client.get_fundamental_equity('AAPL.US', filter_='General::Code,General,Earnings')
 resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund
 resp = client.get_fundamental_equity('GSPC.INDX') # Index
 ```
 - **Calendar. Upcoming Earnings, Trends, IPOs and Splits**
 	- Parameters:
-		- ```symbols```(str): Required - You can request specific symbols to get historical and upcoming data. If ```symbols``` used, then ```from_``` and ```to``` parameters will be ignored. You can use one symbol: ```'AAPL.US'``` or several symbols separated by a comma: ```'AAPL.US,MS'```. For the IPOs and the Splits, the ```symbols``` parameter **is not required**.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+		- ```symbols```(str): Required - You can request specific symbols to get historical and upcoming data. You can use one symbol: ```'AAPL.US'``` or several symbols separated by a comma: ```'AAPL.US,MS.US'```. For the upcoming IPOs and the Splits, the ```symbols``` parameter **is not required**.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
 	- Usage:
 ```python
 # Upcoming Earnings
