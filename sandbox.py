@@ -23,7 +23,7 @@ corporate_bond = 'US00213MAS35.BOND'
 # Stock Price Data API (End-Of-Day Historical Data)
 resp = client.get_prices_eod('AAL.LSE', period='m', order='a') # stock prices - check
 resp = client.get_prices_eod(goverment_bond, period='m')
-resp = client.get_prices_eod(corporate_bond, period='d')
+resp = client.get_prices_eod(corporate_bond)
 # Live (Delayed) Stock Prices API
 resp = client.get_prices_live(corporate_bond, s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GBOND,US00213MAS35.BOND') # live prices - check
 # Historical Splits, Dividends and Short Interest API
@@ -49,7 +49,7 @@ DONE - 3. Does the option endpoint support options for bonds and other instrumen
 DONE - 5. Consider to include the full list of technical indicators as method.
 DONE - 6. Consider to include the filter fields -> stock prices eod and Technical indicators
 DONE - 7. Change the name of the get_stock_ta to get_instrument_ta, all instruments have ta available.
-8. There is an issue with the SPLITS api, contact the team.
+DONE - 8. There is an issue with the SPLITS api, contact the team.
 
 """
 
@@ -69,9 +69,9 @@ resp = client.get_calendar_ipos(from_='2016-01-01') # check
 resp = client.get_calendar_splits(from_='2016-01-01')
 # Macroeconomics Data and Macro Indicators API
 resp = client.get_macro_indicator_name()
-resp = client.get_macro_indicator('USA', indicator='real_interest_rate')
+resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 # Insider Transactions API
-resp = client.get_insider_transactions(code='AAPL.US')
+resp = client.get_insider_transactions(limit=100)
 
 
 # Questions and changes
@@ -94,7 +94,7 @@ DONE - 5. Change the symbol to symbols parameters from the get_fundamental_bulk
 resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
 # Exchanges API. Get List of Tickers
 resp = client.get_exchanges() # Get List of Exchanges - check
-resp = client.get_exchange_symbols('SN') # Get List of Tickers (Exchange Symbols) - check
+resp = client.get_exchange_symbols(exchange='SN') # Get List of Tickers (Exchange Symbols) - check
 # Exchanges API. Trading Hours and Market Holidays
 resp = client.get_exchange_details(exchange='LSE') # check
 # Financial News API

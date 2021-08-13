@@ -11,7 +11,7 @@ class SplitsDividendsShort(RequestHandler):
     def __init__(self, api_key:str, timeout:int):
         # base URL's of the API
         self.URL_DIVIDENDS = 'https://eodhistoricaldata.com/api/div/'
-        self.URL_SPLITS = 'https://eodhistoricaldata.com/api/splits/'
+        self.URL_SPLITS_ = 'https://eodhistoricaldata.com/api/splits/'
         self.URL_SHORT_INTEREST = 'https://eodhistoricaldata.com/api/shorts/'
         super().__init__(api_key, timeout)
         
@@ -52,7 +52,7 @@ class SplitsDividendsShort(RequestHandler):
             historical splits for the selected company.
 
         """
-        self.endpoint = self.URL_SPLITS + symbol.upper()
+        self.endpoint = self.URL_SPLITS_ + symbol.upper()
         return super().handle_request(self.endpoint, query_params)
     
     def get_short_interest(self, symbol:str, **query_params):
