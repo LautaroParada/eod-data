@@ -21,11 +21,11 @@
 This library is the Python 🐍 unofficial SDK for the EOD Historical data REST API. It's intended to be used for data extraction for financial valuations, macroeconomic analyses, sentiment analysis, option strategies, technical analysis, development of machine learning models, and more!
 
 ## Requirements [:arrow_up:](#eod-historical-data-sdk)
-- You need to request an API key with the EOD team. Create your account in the following [link](https://eodhistoricaldata.com/)
+- You need to request an API key with the EOD team. Create your account at the following [link](https://eodhistoricaldata.com/)
 	- ***Please be aware of the pricing plans and policies. Different plans have different data accesses.***
 - ```Python``` >= 3.8
 
-If any update or change is informed through the [Medium site](https://eod-historical-data.medium.com/) of the API, I will implement that in the SDK. The revisions will be on a monthly basis.
+If any update or change is informed through the [Medium site](https://eod-historical-data.medium.com/) site of the API, I will implement it SDK. The revisions will be every month.
 
 ## Installation [:arrow_up:](#eod-historical-data-sdk)
 
@@ -53,10 +53,10 @@ client = EodHistoricalData(api_key)
 ### Historical Prices, Splits and Dividends Data APIs [:arrow_up:](#eod-historical-data-sdk)
 - **Stock Price Data API (End-Of-Day Historical Data)**: Retrieve end-of-day data for Stocks, ETFs, Mutual Funds, Bonds (Government and Corporate), Cryptocurrencies, and FOREX pairs.
 	- Parameters:
-		- ```symbol```(str): Required - 
-		- ```period```(str): Optional - Use 'd' for daily, 'w' for weekly, 'm' for monthly prices. By default, daily prices will be shown.
-		- ```order```(str): Optional - Use 'a' for ascending dates (from old to new), 'd' for descending dates (from new to old). By default, dates are shown in ascending order.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```period```(str): Optional - Use ```'d'``` for daily, ```'w'``` for weekly, ```'m'``` for monthly prices. By default, daily prices will be shown.
+		- ```order```(str): Optional - Use ```'a'``` for ascending dates (from old to new), ```'d'``` for descending dates (from new to old). By default, dates are shown in ascending order.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from='2017-01-05'``` and ```to='2017-02-10'```
 	- Usage:
 ```python
 # AngloAmerican stock that trades in the London Stock Exchange
@@ -66,7 +66,7 @@ resp = client.get_prices_eod('SW10Y.GBOND', period='w')
 # Corportae Bond
 resp = client.get_prices_eod('US00213MAS35.BOND')
 ```
-- **Live (Delayed) Stock Prices API**: The method supports almost all symbols and exchanges worldwide, and the prices provided have a 15-20 minutes delay. The method can also provide combinations of multiple tickers with just one request. The only supported interval is the 1-minute interval. The UNIX standard is used for the timestamp.
+- **Live (Delayed) Stock Prices API**: The method supports almost all symbols and exchanges worldwide, and the prices provided have a 15-20 minutes delay. The method also offers combinations of multiple tickers with just one request. The only supported interval is the 1-minute interval. **The UNIX standard is used for the timestamp**.
 	- Parameters:
 		- ```symbol```(str): Required - Name of the instrument to retrieve data.
 		- ```s```(str): Optional - Additional instruments to retrieve data.
@@ -81,7 +81,7 @@ resp = client.get_prices_live('AAL.LSE', s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GB
 - **Historical Splits, Dividends and Short Interest API**: Get the historical dividends, splits, and short interest for any stock.
 	- Parameters:
 		- ```symbol```(str): Required - Name of the instrument to retrieve data.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from='2017-01-05'``` and ```to='2017-02-10'```
 	- Usage:
 ```python
 # Get dividend data
@@ -91,15 +91,15 @@ resp = client.get_short_interest('AAPL.US')
 # Get the splits for a company
 resp = client.get_splits('AAPL.US', from_='1994-01-01', to='2020-10-24')
 ```
-- **Technical Indicator API**: Retrieve technical data associated with the price action of an instrument. The data is mainly oriented to technical indicators rather than any other methodology (e.g., Elliot Waves, Wyckoff, etc.)
+- **Technical Indicator API**: Retrieve technical data associated with the price action of an instrument. The data is mainly oriented to technical indicators rather than any other price-action methodology (e.g., Elliot Waves, Wyckoff, etc.)
 	- Parameters:
 		- ```symbol```(str): Required - Name of the instrument to retrieve data.
 		- ```function```(str): Required - The function that will be applied to data series to get technical indicator data.
-		- ```period```(int): Optional - The number of data points used to calculate each indicator value. Valid range from 2 to 100000 with the default value is 50.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
-		- ```order```(str): Optional – Use 'a' for ascending dates (from old to new) and 'd' for descending dates (from new to old). By default, dates are shown in ascending order.
-		- ```splitadjusted_only```(int): Optional – The default value is 0. By default, the API calculates data for some functions by closes adjusted with splits and dividends. If you need to calculate the data by closes adjusted only with splits, set this parameter to 1. Works with the following functions: sma, ema, wma, volatility, rsi, slope, and macd.
-		- ```filter_```(str): Optional - Ability to get only the last value. The syntax is the following: last_indicator_name, for instance, last_ema, last_volume, etc.
+		- ```period```(int): Optional - The number of data points used to calculate each indicator value. Valid range from 2 to 100000 with. The default value is 50.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from='2017-01-05'``` and ```to='2017-02-10'```
+		- ```order```(str): Optional – Use ```'a'``` for ascending dates (from old to new) and ```'d'``` for descending dates (from new to old). By default, dates are shown in ascending order.
+		- ```splitadjusted_only```(int): Optional – The default value is 0. By default, the API calculates data for some functions by closes adjusted with splits and dividends. If you need to calculate the data by closes adjusted only with splits, set this parameter to 1. The available functions for technical analysis are displayable via the ```get_get_indicator_name()``` method.
+		- ```filter_```(str): Optional - Ability to get only the last value. The syntax is the following: ```last_indicator_name```, for instance, ```last_ema```, ```last_volume```, etc.
 	- Usage:
 ```python
 # Get the available indicators in the API. This method does not accept any parameter.
@@ -110,20 +110,20 @@ resp = client.get_instrument_ta('AAPL', function='sar', from_='2020-03-01', to='
 - **Intraday Historical Data API**: Get intraday historical stock price data for US (NYSE and NASDAQ), Canada, and MOEX tickers. The 1-minute interval includes the pre-market and after-hours trading data from 2004 (more than 15 years of the data), and for the 5-minute intervals, the data starts from October 2020. For other tickers (mainly for international instruments), it is only available the 5-minute intervals and only from October 2020.
 	- Parameters:
 		- ```symbol```(str): Required - Name of the instrument to retrieve data.
-		- ```interval```(str): Required - use '5m' for 5-minutes intervals and '1m' for 1-minute intervals.
-		- ```from_```(str) and ```to```(str): Optional - Use these parameters to filter data by datetime. Parameters should be passed in UNIX time with UTC timezone, for example, these values are correct: 'from_=1564752900' and 'to=1564753200' and correspond to '2019-08-02 13:35:00' and '2019-08-02 13:40:00'. The maximum period between 'from_' and 'to' is 100 days. Try this site to converte dates into UNIX https://www.unixtimestamp.com/index.php
+		- ```interval```(str): Required - use ```'5m'``` for 5-minutes intervals and ```'1m'``` for 1-minute intervals.
+		- ```from_```(str) and ```to```(str): Optional - Use these parameters to filter data by datetime. Parameters should be passed in UNIX time with UTC timezone, for example, these values are correct: ```from_=1564752900``` and ```to=1564753200``` and correspond to 2019-08-02 13:35:00 and 2019-08-02 13:40:00 respectively. The maximum period between 'from_' and 'to' is 100 days. Try this site to converte dates into UNIX https://www.unixtimestamp.com/index.php
 	- Usage:
 ```python
 resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800', to='1620414000')
 ```
-- **Options Data API**:  Stock options data for top US stocks from NYSE and NASDAQ, the data for Options starts from April 2018. Options data is updated daily; however, the API does not provide a history for options contracts prices or other related data. That means: for each contract, there is only the current price, bid/ask, etc. For example, the data for AAPL on May 7th, 2021, the API has 2439 PUT and CALL option contracts in the database. 
+- **Options Data API**:  Stock options data for top US stocks from NYSE and NASDAQ, the data for Options starts from April 2018. Options data is updated daily; however, the API does not provide a history for options contracts prices or other related data. That means: for each contract, there is only the current price, bid/ask, etc. 
 1. **IMPORTANT!** For backward compatibility, you should use the ```from_``` parameter with any value before the expiration date, the API recommends '2000-01-01'. 
 2. **Note**: option greeks and some additional value are available only for options with expiration date Feb 15, 2019, or later.
 	- Parameters:
 		- ```symbol```(str): Required - Name of the instrument to retrieve data.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from='2017-01-05'``` and ```to='2017-02-10'```
 		- ```contract_name```(str): Optional - Name of a particular contract.
-		- ```trade_date_to```(str): Optional - filters OPTIONS by lastTradeDateTime. Default value: NONE.
+		- ```trade_date_to```(str): Optional - filters OPTIONS by ```lastTradeDateTime```. Default value: is blank.
 	- Usage:
 ```python
 resp = client.get_stock_options('AAPL.US')
