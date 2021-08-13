@@ -11,7 +11,7 @@ URL = 'https://github.com/LautaroParada/eod-data'
 
 LICENSE = 'Apache License 2.0'
 DESCRIPTION = 'SDK for EOD Historical data APIs'
-LONG_DESCRIPTION = (HERE / "README.md").read_text()
+LONG_DESCRIPTION = (HERE / "README.md").read_text(encoding="utf8")
 LONG_DESC_TYPE = "text/markdown"
 
 INSTALL_REQUIRES = [
