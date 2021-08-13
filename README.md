@@ -30,13 +30,37 @@ If any update or change is informed through the [Medium site](https://eod-histor
 ## Installation [:arrow_up:](#eod-historical-data-sdk)
 
 ```python
-pip install #define a catchy name
+pip install eod
 ```
 
 ## Demo [:arrow_up:](#eod-historical-data-sdk)
 
-```python
+It's highly recommendable to save your API keys in the environment variable. A short tutorial can be founded in the following video:
+https://www.youtube.com/watch?v=IolxqkL7cD8
 
+```python
+import os
+
+# load the key from the enviroment variables
+api_key = os.environ['API_EOD']
+
+from eod import EodHistoricalData
+from random import randint
+
+# Create the instance 
+client = EodHistoricalData(api_key)
+# predefine some instruments
+symbol='AAPL.US'
+goverment_bond = 'SW10Y.GBOND'
+corporate_bond = 'US00213MAS35.BOND'
+
+# Quick usage
+# weekly prices for the Swiss goverment bond
+stock_prices = client.get_prices_eod(goverment_bond, period='w', order='a')
+# Short interest
+get_short_interest = client.get_short_interest(symbol, to='2021-07-04')
+# Fundamental data for the stock
+resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet::quarterly') # Stock - check
 ```
 
 ## Documentation [:arrow_up:](#eod-historical-data-sdk)
