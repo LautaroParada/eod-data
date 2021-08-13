@@ -189,7 +189,7 @@ resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 ```
 ### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
-- **Bulk API for EOD, Splits and Dividends**: This method allows you to easily download the data for the entire exchange for a particular day. It works for end-of-day historical data feed and splits and dividends data as well. For US tickers you can also use NYSE or NASDAQ as exchange symbols to get data only for NYSE or NASDAQ exchange. With this method is no longer necessary to perform thousands and thousands of API requests per day.
+- **Bulk API for EOD, Splits and Dividends**: This method allows you to download the data for an entire exchange for a particular day. It works for end-of-day historical data feed and splits and dividends data as well. You can also use NYSE or NASDAQ as exchange symbols for US tickers to get data only for NYSE or NASDAQ exchange. With this method is no longer necessary to perform thousands and thousands of API requests per day.
 	- Parameters:
 		- ```type_```(str): Optional - Which type of data to return. The available options are ```'splits'``` or ```'dividends'```. If it's blank, the default response will be the market end-of-day data.
 		- ```date```(str): Optional - By default, the data for last trading day will be downloaded, but if you need any specific date enter a date with the following format YYYY-MM-DD
@@ -222,16 +222,16 @@ resp = client.get_exchange_symbols(exchange='ETLX')
 # Request the London Stock Exchange details
 resp = client.get_exchange_details(exchange='LSE')
 ```
-- **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and certain tickers with the given parameters. Despite that all parameters are optional, you need to input at least one of them, see the usage for guidance.
+- **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and specific tickers according to the given parameters. Despite that all parameters are optional, you need to input at least one of them. See the usage for guidance.
 	- Parameters:
 		- ```s```(str): Optional - The ticker code to get news for.
 		- ```t```(str): Optional - The tag to get news on a given topic. You can find the list of supported topics in the usage area.
 		- ```limit```(str): Optional - The number of results should be returned with the query. Default value: 50, minimum value: 1, maximum value: 1000.
 		- ```offset```(str): Optional - The offset of the data. Default value: 0, minimum value: 0, maximum value: 100. For example, to get 100 symbols starting from 200 you should use limit=100 and offset=200.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use from=2017-01-05 and to=2017-02-10.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
 	- Usage:
 ```python
-# Get the available tags
+# Get the available financial tags
 tags = client.get_financial_tags()
 import random
 specific_tag = random.choice(tags) # choose a random tag from the available list
@@ -240,7 +240,7 @@ resp = client.get_financial_news(s='AAL.LSE')
 # Request data for the selected tag
 resp = client.get_financial_news(t=specific_tag)
 ```
-- **Stock Market Screener API**: Filter stocks based on some criterias. ***THIS METHOD IS UNDER BETA MODE, ONLY THE SIGNALS PARAMETER WORKS, THE FILTERS IS NOT. PLEASE USE IT SEPARATELY***
+- **Stock Market Screener API**: Filter stocks based on some criteria. ***THIS METHOD IS UNDER BETA MODE; ONLY THE SIGNALS PARAMETER WORKS, THE FILTERS IS NOT. PLEASE USE IT SEPARATELY***
 	- Parameters:
 		- ```filters```(--): **DO NOT USE THIS PARAMTER, IS UNDER REVISION**
 		- ```signals```(str): Required - Alert to use as a filter. The available options can be requested by the method ```get_screener_signals```.
