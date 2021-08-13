@@ -28,7 +28,7 @@ resp = client.get_prices_eod(corporate_bond)
 resp = client.get_prices_live(corporate_bond, s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GBOND,US00213MAS35.BOND') # live prices - check
 # Historical Splits, Dividends and Short Interest API
 resp = client.get_dividends(symbol, from_='2000-03-01', to='2021-07-06') # dividends - check
-resp = client.get_splits(symbol, from_='1994-01-01', to='2021-07-04') # ERROR
+resp = client.get_splits(symbol, from_='1994-01-01', to='2021-07-04')
 resp = client.get_short_interest(symbol, to='2021-07-04')
 # Intraday Historical Data API
 resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800', to='1620414000') # intraday data - check (not for bonds)
