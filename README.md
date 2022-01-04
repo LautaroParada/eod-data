@@ -153,6 +153,21 @@ resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800'
 resp = client.get_stock_options('AAPL.US')
 ```
 ### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
+- **Economic events API**: It provides the past and future events from all around the world like Retail Sails, Bond Auctions, PMI Releases and many other Economic Events data.
+	- Parameters:
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
+		- ```country```(string). Optional - The country code in ISO 3166 format, 2 symbols.
+		- ```comparison```(string): Optional - Filter events by their periodicity. Possible values: ```mom```, ```qoq```, ```yoy```.
+		- ```offset```(int): Optional - Possible values from 0 to 1000.
+		- ```limit```(int): Optional - The maximum amount of data to retrieve. Possible values from 0 to 1000.
+	- Usage:
+```python
+# Get the default economic events data (the United States and all comparisons included)
+resp = client.get_economic_events()
+
+# Retrieve the economic events for Chile for the 4th quarter using a Year-over-Year comparison, and limit the amount of data to 5 rows.
+client.get_economic_events(from_='2020-10-01', to_='2020-12-31', country='CH', limit=5, comparison='yoy')
+```
 - **Insider Transactions API**: The insider transactions API data is available for all US companies that report Form 4 to the SEC. Insider trading involves trading in a public company’s stock by someone who has non-public, material information about that stock for any reason.
 	- Parameters:
 		- ```code```(str): Optional - Name of the company to retrieve data. By default, all possible symbols will be displayed.
