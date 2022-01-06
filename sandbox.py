@@ -29,7 +29,7 @@ resp = client.get_prices_live(corporate_bond, s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW1
 # Historical Splits, Dividends and Short Interest API
 resp = client.get_dividends(symbol, from_='2000-03-01', to='2021-07-06') # dividends - check
 resp = client.get_splits(symbol, from_='1994-01-01', to='2021-07-04')
-resp = client.get_short_interest(symbol, to='2021-07-04')
+resp = client.get_short_interest(symbol, to='2021-12-31') # possible error
 # Intraday Historical Data API
 resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800', to='1620414000') # intraday data - check (not for bonds)
 # Options Data API
@@ -45,12 +45,12 @@ resp = client.get_instrument_ta('AAPL', function='sar', from_='2020-03-01', to='
 DONE - 1. Change the get_stock_prices to get_prices_eod -> all the supported assets can be requested with this endpoint.
 DONE - 2. Change get_stock_prices, get_live_prices and get_intraday_data to get_prices_something -> its the standard.
 DONE - 3. Does the option endpoint support options for bonds and other instruments? -> NO
-4. Check the from and to parameters of the get_stock_options endpoint
+DONE - 4. Check the from and to parameters of the get_stock_options endpoint
 DONE - 5. Consider to include the full list of technical indicators as method.
 DONE - 6. Consider to include the filter fields -> stock prices eod and Technical indicators
 DONE - 7. Change the name of the get_stock_ta to get_instrument_ta, all instruments have ta available.
 DONE - 8. There is an issue with the SPLITS api, contact the team.
-
+9. There is a possible error with the short interest
 """
 
 #%% Fundamental and economic financial data
@@ -65,8 +65,8 @@ resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 # Calendar. Upcoming Earnings, Trends, IPOs and Splits
 resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2020-12-01') # check
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA') # check
-resp = client.get_calendar_ipos(from_='2016-01-01') # check
-resp = client.get_calendar_splits(from_='2016-01-01')
+resp = client.get_calendar_ipos(from_='2022-01-01') # check
+resp = client.get_calendar_splits(from_='2022-01-01')
 # Macroeconomics Data and Macro Indicators API
 resp = client.get_macro_indicator_name()
 resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
@@ -91,7 +91,7 @@ DONE - 5. Change the symbol to symbols parameters from the get_fundamental_bulk
 
 # Bulk API for EOD, Splits and Dividends
 # additional parameters: type, date, symbols, filter
-resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
+resp = client.get_bulk_markets(exchange='US', date='2022-01-01', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
 # Exchanges API. Get List of Tickers
 resp = client.get_exchanges() # Get List of Exchanges - check
 resp = client.get_exchange_symbols(exchange='SN') # Get List of Tickers (Exchange Symbols) - check
@@ -104,7 +104,7 @@ resp = client.get_financial_news(s='VAPORES.SN') # choose a random tag - check
 resp = client.get_search_instrument(query_string='Chile', bonds_only=1) # check
 # Stock Market Screener API
 resp = client.get_screener_signals()
-resp = client.get_instrument_screener(signals='200d_new_hi,wallstreet_hi')
+resp = client.get_instrument_screener(signals='wallstreet_hi')
 
 
 # Questions and changes
