@@ -45,7 +45,7 @@ class TechnicalIndicatorsData(RequestHandler):
         ----------
         symbol : str
             name of the stock to analyse, consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}.
-        **query_params : dict
+        **query_params :
             query parameters.
 
         Returns
