@@ -32,7 +32,8 @@ class TechnicalIndicatorsData(RequestHandler):
                 'macd':'Moving Average Convergence/Divergence',
                 'atr':'Average True Range',
                 'cci':'Commodity Channel Index',
-                'sar':'Parabolic SAR'
+                'sar':'Parabolic SAR',
+                'bbands':'Bollinger Bands'
             }
 
         
