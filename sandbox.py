@@ -22,14 +22,14 @@ corporate_bond = 'US00213MAS35.BOND'
 
 # Stock Price Data API (End-Of-Day Historical Data)
 resp = client.get_prices_eod('AAL.LSE', period='m', order='a') # stock prices - check
-# resp = client.get_stock_prices(goverment_bond, period='d')
-# resp = client.get_stock_prices(corporate_bond, period='d')
+resp = client.get_prices_eod(goverment_bond, period='m')
+resp = client.get_prices_eod(corporate_bond)
 # Live (Delayed) Stock Prices API
 resp = client.get_prices_live(corporate_bond, s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GBOND,US00213MAS35.BOND') # live prices - check
 # Historical Splits, Dividends and Short Interest API
 resp = client.get_dividends(symbol, from_='2000-03-01', to='2021-07-06') # dividends - check
-resp = client.get_splits(symbol, from_='1994-01-01', to='2021-07-04') # ERROR
-resp = client.get_short_interest(symbol, to='2021-07-04')
+resp = client.get_splits(symbol, from_='1994-01-01', to='2021-07-04')
+resp = client.get_short_interest(symbol, to='2021-12-31') # possible error
 # Intraday Historical Data API
 resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800', to='1620414000') # intraday data - check (not for bonds)
 # Options Data API
@@ -45,47 +45,75 @@ resp = client.get_instrument_ta('AAPL', function='sar', from_='2020-03-01', to='
 DONE - 1. Change the get_stock_prices to get_prices_eod -> all the supported assets can be requested with this endpoint.
 DONE - 2. Change get_stock_prices, get_live_prices and get_intraday_data to get_prices_something -> its the standard.
 DONE - 3. Does the option endpoint support options for bonds and other instruments? -> NO
-4. Check the from and to parameters of the get_stock_options endpoint
+DONE - 4. Check the from and to parameters of the get_stock_options endpoint
 DONE - 5. Consider to include the full list of technical indicators as method.
 DONE - 6. Consider to include the filter fields -> stock prices eod and Technical indicators
 DONE - 7. Change the name of the get_stock_ta to get_instrument_ta, all instruments have ta available.
-
+DONE - 8. There is an issue with the SPLITS api, contact the team.
+9. There is a possible error with the short interest
 """
 
 #%% Fundamental and economic financial data
 
-resp = client.get_fundamentals_stock(symbol)
+# Fundamental Data: Stocks, ETFs, Mutual Funds, Indices
+resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet::quarterly') # Stock - check
+resp = client.get_fundamental_equity('QVAL.US') # ETF - check
+resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund - check
+resp = client.get_fundamental_equity('GSPC.INDX') # Index - check
+resp = client.get_fundamentals_bulk(exchange='amex', limit=1000) # ERROR
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
-resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2021-06-30')
-resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA')
-resp = client.get_calendar_ipos()
-resp = client.get_calendar_splits()
-resp = client.get_macro_indicator('CHL')
+# Calendar. Upcoming Earnings, Trends, IPOs and Splits
+resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2020-12-01') # check
+resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA') # check
+resp = client.get_calendar_ipos(from_='2022-01-01') # check
+resp = client.get_calendar_splits(from_='2022-01-01')
+# Macroeconomics Data and Macro Indicators API
+resp = client.get_macro_indicator_name()
+resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
+# Insider Transactions API
+resp = client.get_insider_transactions(limit=100)
 
 
 # Questions and changes
 
 """
-1. Consider to include a method to list all available macro indicators
+DONE - 1. Consider to include a method to list all available macro indicators
+DONE - 2. Change the name of the method get_fundamental_stock to get_fundamental_equity
+DONE - 3. Add the endpoint call related to insider transactions
+DONE - 4. Check if the endpoint support the Filter Fields and WEBSERVICE support.
+DONE - 5. Change the symbol to symbols parameters from the get_fundamental_bulk
+6. Contact the EOD team to check the bulk fundamentals api
+7. only the to parameter of the get_calendar earnings is not working
 
 """
 
 #%% Exchanges API's
 
-resp = client.get_bulk_markets(exchange='sn', filter_='extended')
-resp = client.get_exchanges()
-resp = client.get_exchange_symbols('IS')
-resp = client.get_exchange_details(exchange='LSE', from_='2020-12-20', to='2021-05-18')
-tags = client.get_financial_tags()
-resp = client.get_financial_news(t=tags[randint(a=0, b=len(tags))]) # choose a random tag
-resp = client.get_search_instrument(query_string='Latam', bonds_only=1)
+# Bulk API for EOD, Splits and Dividends
+# additional parameters: type, date, symbols, filter
+resp = client.get_bulk_markets(exchange='US', date='2022-01-01', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
+# Exchanges API. Get List of Tickers
+resp = client.get_exchanges() # Get List of Exchanges - check
+resp = client.get_exchange_symbols(exchange='SN') # Get List of Tickers (Exchange Symbols) - check
+# Exchanges API. Trading Hours and Market Holidays
+resp = client.get_exchange_details(exchange='LSE') # check
+# Financial News API
+tags = client.get_financial_tags() # check
+resp = client.get_financial_news(s='VAPORES.SN') # choose a random tag - check
+# Search API for Stocks, ETFs, Mutual Funds and Indices
+resp = client.get_search_instrument(query_string='Chile', bonds_only=1) # check
+# Stock Market Screener API
+resp = client.get_screener_signals()
+resp = client.get_instrument_screener(signals='wallstreet_hi')
 
 
 # Questions and changes
 
 """
-1. The symbols query parameter for the bulk request is not working properly.
-2. Why there are no news for minor international exchanges?
-3. Why the are no holidays for minor international exchanges?
+DONE - 1. The symbols query parameter for the bulk request is not working properly.
+DONE - 2. Why there are no news for minor international exchanges?
+DONE - 3. Why the are no holidays for minor international exchanges?
+4. Monitor the updates of the financial tags on a monthly basis.
+PARTIALLY - 5. Try to implement the Stock Market Screener API
 
 """
