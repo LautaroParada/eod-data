@@ -71,6 +71,8 @@ resp = client.get_macro_indicator_name()
 resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 # Insider Transactions API
 resp = client.get_insider_transactions(limit=100)
+# Historical market capitalization
+resp = client.get_market_cap(symbol='V.US', from_='2020-01-01')
 
 
 # Questions and changes
