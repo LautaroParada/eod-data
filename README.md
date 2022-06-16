@@ -13,8 +13,9 @@
 4. [Demo](#demo-arrow_up)
 5. [Documentation](#documentation-arrow_up)
 	- [Historical Prices, Splits and Dividends Data APIs](#historical-prices-splits-and-dividends-data-apis-arrow_up)
-	- [Fundamental and Economic Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
+	- [Fundamental Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
 	- [Exchanges Financial APIs](#exchanges-financial-apis-arrow_up)
+	- [Alternative Financial Data APIs](#alternative-financial-data-arrow_up)
 6. [Disclaimer](#disclaimer-arrow_up)
 
 ## General description [:arrow_up:](#eod-historical-data-sdk)
@@ -315,6 +316,17 @@ resp = client.get_instrument_screener(signals='200d_new_hi,wallstreet_hi')
 resp = client.get_search_instrument(query_string='.com')
 # Search bonds related to Chile
 resp = client.get_search_instrument(query_string='Chile', bonds_only=1)
+```
+
+### Alternative Financial Data [:arrow_up:](#eod-historical-data-sdk)
+- **Sentiment Financial Data**: Retrieve sentimental data calculated from the EOD historical data API. The aggregated sentiment data from the EOD historical API is collected from the news (and in the nearest future from tweets) for stocks, ETFs, Forex, and cryptocurrencies data. The data is aggregated by day.
+	- Paramaters:
+		- ```s```(str): Required - Name of the instrument to retrieve data. Consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}. For example, MCD.MX for Mexican Stock Exchange or MCD.US for NYSE. You can retrieve multiple instruments separating them by commas. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about the stock markets the API support.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
+	- Usage:
+```python
+# Sentiment Financial Data for Visa
+resp = client.get_sentiment(s='V.US')
 ```
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)

@@ -118,3 +118,8 @@ DONE - 3. Why the are no holidays for minor international exchanges?
 PARTIALLY - 5. Try to implement the Stock Market Screener API
 
 """
+
+#%% Alternative Financial Data
+
+# Sentiment Data Financial API
+resp = client.get_sentiment(s='BTC-USD.CC')
