@@ -227,6 +227,17 @@ resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 ```python
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 ```
+
+- **Historical market capitalization API**: Get historical Market Capitalization data, EOD Historical data cover all US stocks traded on NYSE/NASDAQ from 2017. Soon they will start to cover cryptocurrencies with historical market capitalization.
+	- Parameters:
+		- ```symbol```(str): Required - Name of the instrument to retrieve data. Consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}. For example, MCD.MX for Mexican Stock Exchange or MCD.US for NYSE. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about the stock markets the API support.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```.
+	- Usage:
+```python
+# Request the historical market capitalization for Visa
+resp = client.get_market_cap(symbol='V.US', from_='2020-01-01')
+```
+
 ### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
 - **Bulk API for EOD, Splits and Dividends**: This method allows you to download the data for an entire exchange for a particular day. It works for end-of-day historical data feed and splits and dividends data as well. You can also use NYSE or NASDAQ as exchange symbols for US tickers to get data only for NYSE or NASDAQ exchange. With this method is no longer necessary to perform thousands and thousands of API requests per day.
 	- Parameters:

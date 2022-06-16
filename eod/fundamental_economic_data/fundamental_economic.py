@@ -10,9 +10,11 @@ from eod.fundamental_economic_data.calendar_earnings_trends_ipos_splits_api impo
 from eod.fundamental_economic_data.macroeconomic_api import MacroEconomicIndicators
 from eod.fundamental_economic_data.insider_transactions_api import InsiderTransactions
 from eod.fundamental_economic_data.economic_events_data_api import EconomicEventsData
+from eod.fundamental_economic_data.historical_market_capitalization_api import HistoricalMarketCapitalization
 
 class FundamentalEconomicData(StockEtfFundsIndexFundamentalData, CalendarEarningsTrendsIposSplits,
-                              MacroEconomicIndicators, InsiderTransactions, EconomicEventsData):
+                              MacroEconomicIndicators, InsiderTransactions, EconomicEventsData,
+                              HistoricalMarketCapitalization):
     def __init__(self, api_key:str, timeout:int):
         # inhereting the API classes
         StockEtfFundsIndexFundamentalData.__init__(self, api_key, timeout)
@@ -20,3 +22,4 @@ class FundamentalEconomicData(StockEtfFundsIndexFundamentalData, CalendarEarning
         MacroEconomicIndicators.__init__(self, api_key, timeout)
         InsiderTransactions.__init__(self, api_key, timeout)
         EconomicEventsData.__init__(self, api_key, timeout)
+        HistoricalMarketCapitalization.__init__(self, api_key, timeout)
