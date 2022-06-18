@@ -97,19 +97,20 @@ client = EodHistoricalData(api_key)
 ```
 
 ### Stock Market Prices, Splits and Dividends Data API [:arrow_up:](#eod-historical-data-sdk)
-- **Stock Price Data API (End-Of-Day Historical Data)**: Retrieve end-of-day data for Stocks, ETFs, Mutual Funds, Bonds (Government and Corporate), Cryptocurrencies, and FOREX pairs.
+- **End-Of-Day Historical Stock Market Data API**: Retrieve end-of-day data for Stocks, ETFs, Mutual Funds, Bonds (Government and Corporate), Cryptocurrencies, and FOREX pairs.
 	- Parameters:
-		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```symbol```(str): Required - Name of the instrument to retrieve data. Consists of two parts: ```{SYMBOL_NAME}.{EXCHANGE_ID}```, then you can use, for example, MCD.MX for Mexican Stock Exchange. or MCD.US for NYSE. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about stock markets the EOD API do support.
 		- ```period```(str): Optional - Use ```'d'``` for daily, ```'w'``` for weekly, ```'m'``` for monthly prices. By default, daily prices will be shown.
 		- ```order```(str): Optional - Use ```'a'``` for ascending dates (from old to new), ```'d'``` for descending dates (from new to old). By default, dates are shown in ascending order.
 		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
+		- 
 	- Usage:
 ```python
 # AngloAmerican stock that trades in the London Stock Exchange
 resp = client.get_prices_eod('AAL.LSE', period='d', order='a', from_='2017-01-05')
 # Swiss goverment Bond
 resp = client.get_prices_eod('SW10Y.GBOND', period='w')
-# Corportae Bond
+# Corporate Bond
 resp = client.get_prices_eod('US00213MAS35.BOND')
 ```
 - **Live (Delayed) Stock Prices API**: The method supports almost all symbols and exchanges worldwide, and the prices provided have a 15-20 minutes delay. The method also offers combinations of multiple tickers with just one request. The only supported interval is the 1-minute interval. **The UNIX standard is used for the timestamp**.
