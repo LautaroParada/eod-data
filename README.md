@@ -38,7 +38,7 @@ pip install eod
 
 ## Demo [:arrow_up:](#eod-historical-data-sdk)
 ### REST API [:arrow_up:](#eod-historical-data-sdk)
-It's highly recommendable to save your API keys in the environment variable. A short tutorial can be founded in the following video:
+It's highly recommendable to save your API keys in the environment variable. A short tutorial can be founded in the [following video](https://www.youtube.com/watch?v=IolxqkL7cD8):
 
 [![Demo enviroment variables](https://j.gifs.com/LZlj1D.gif)](https://www.youtube.com/watch?v=IolxqkL7cD8)
 
