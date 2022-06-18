@@ -59,7 +59,7 @@ resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet:
 resp = client.get_fundamental_equity('QVAL.US') # ETF - 
 resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund - 
 resp = client.get_fundamental_equity('GSPC.INDX') # Index - 
-# resp = client.get_fundamentals_bulk(exchange='amex', limit=1000) # ERROR
+resp = client.get_fundamentals_bulk(exchange='US', symbols='MSFT,AAPL,BMW.XETRA,SAP.F') # ERROR
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 # Calendar. Upcoming Earnings, Trends, IPOs and Splits
 resp = client.get_calendar_earnings() # 
