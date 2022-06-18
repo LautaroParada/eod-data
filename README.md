@@ -223,12 +223,13 @@ resp = client.get_calendar_ipos(from_='2022-01-01')
 # Upcoming Splits
 resp = client.get_calendar_splits(from_='2022-01-01')
 ```
-- **Bonds Fundamentals API**: Bond covenants details.
+- **Bonds Fundamentals API**: The EOD API supports US corporate bonds and Government Bonds (for government bonds, see [Economic Data API](https://eodhistoricaldata.com/financial-apis/economic-data-api/)). There are always new corporate bonds on the market; if you don’t find any particular bond, please get in touch with the EOD API, and they will add the data within 24 hours.
 	- Parameters:
 		- ```cusip```(str): Required - CUSIP of a particular bond, it’s also could be an ISIN. Other IDs are not supported at the moment.
 	- Usage:
 ```python
-resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
+# Request fundamental data for a corporate bond.
+resp = client.get_fundamentals_bonds(cusip='US00213MAS35.BOND')
 ```
 
 ### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
