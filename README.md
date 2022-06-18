@@ -273,24 +273,6 @@ resp = client.get_exchange_symbols(exchange='ETLX')
 # Request the London Stock Exchange details
 resp = client.get_exchange_details(exchange='LSE')
 ```
-- **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and specific tickers according to the given parameters. Despite that all parameters are optional, you need to input at least one of them. See the usage for guidance.
-	- Parameters:
-		- ```s```(str): Optional - The ticker code to get news for.
-		- ```t```(str): Optional - The tag to get news on a given topic. You can find the list of supported topics in the usage area.
-		- ```limit```(str): Optional - The number of results should be returned with the query. Default value: 50, minimum value: 1, maximum value: 1000.
-		- ```offset```(str): Optional - The offset of the data. Default value: 0, minimum value: 0, maximum value: 100. For example, to get 100 symbols starting from 200 you should use limit=100 and offset=200.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
-	- Usage:
-```python
-# Get the available financial tags
-tags = client.get_financial_tags()
-import random
-specific_tag = random.choice(tags) # choose a random tag from the available list
-# Request the news from Anglo American
-resp = client.get_financial_news(s='AAL.LSE')
-# Request data for the selected tag
-resp = client.get_financial_news(t=specific_tag)
-```
 - **Stock Market Screener API**: Filter stocks based on some criteria. ***THIS METHOD IS UNDER BETA MODE; ONLY THE SIGNALS PARAMETER WORKS, THE FILTERS IS NOT. PLEASE USE IT SEPARATELY***
 	- Parameters:
 		- ```filters```(--): **DO NOT USE THIS PARAMTER, IS UNDER REVISION**
@@ -327,6 +309,24 @@ resp = client.get_search_instrument(query_string='Chile', bonds_only=1)
 ```python
 # Sentiment Financial Data for Visa
 resp = client.get_sentiment(s='V.US')
+```
+- **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and specific tickers according to the given parameters. Despite that all parameters are optional, you need to input at least one of them. See the usage for guidance.
+	- Parameters:
+		- ```s```(str): Optional - The ticker code to get news for.
+		- ```t```(str): Optional - The tag to get news on a given topic. You can find the list of supported topics in the usage area.
+		- ```limit```(str): Optional - The number of results should be returned with the query. Default value: 50, minimum value: 1, maximum value: 1000.
+		- ```offset```(str): Optional - The offset of the data. Default value: 0, minimum value: 0, maximum value: 100. For example, to get 100 symbols starting from 200 you should use limit=100 and offset=200.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
+	- Usage:
+```python
+# Get the available financial tags
+tags = client.get_financial_tags()
+import random
+specific_tag = random.choice(tags) # choose a random tag from the available list
+# Request the news from Anglo American
+resp = client.get_financial_news(s='AAL.LSE')
+# Request data for the selected tag
+resp = client.get_financial_news(t=specific_tag)
 ```
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
