@@ -305,7 +305,7 @@ resp = client.get_sentiment(s='V.US')
 ```
 - **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and specific tickers according to the given parameters. Despite that all parameters are optional, you need to input at least one of them. See the usage for guidance.
 	- Parameters:
-		- ```s```(str): Optional - The ticker code to get news for.
+		- ```s```(str): Optional - The ticker code to get news for. Consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}. For example, MCD.MX for Mexican Stock Exchange or MCD.US for NYSE. You can retrieve multiple instruments separating them by commas. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about the stock markets the API support.s
 		- ```t```(str): Optional - The tag to get news on a given topic. You can find the list of supported topics in the usage area.
 		- ```limit```(str): Optional - The number of results should be returned with the query. Default value: 50, minimum value: 1, maximum value: 1000.
 		- ```offset```(str): Optional - The offset of the data. Default value: 0, minimum value: 0, maximum value: 100. For example, to get 100 symbols starting from 200 you should use limit=100 and offset=200.
