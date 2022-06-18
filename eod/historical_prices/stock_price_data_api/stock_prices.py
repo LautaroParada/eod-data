@@ -15,13 +15,13 @@ class StockPriceData(RequestHandler):
         
     def get_prices_eod(self, symbol:str, **query_params):
         """
-        Get historical stocks, bonds and forex price data
+        Get historical prices for stocks, bonds, forex, indexes, money instruments.
 
         Parameters
         ----------
         symbol : str
-            name of the stock to analyse, consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}.
-        **query_params : dict
+            name of the instrument to analyse, consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}.
+        **query_params :
             query parameters.
 
         Returns
