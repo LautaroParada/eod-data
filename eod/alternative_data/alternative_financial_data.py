@@ -1,7 +1,7 @@
 from eod.alternative_data.sentiment_financial_api import SentimentFinancialData
 from eod.alternative_data.financial_news_api import FinancialNews
 from eod.alternative_data.macroeconomic_api import MacroEconomicIndicators
-from eod.alternative_data.economics_events_data_api import EconomicEventsData
+from eod.alternative_data.economic_events_data_api import EconomicEventsData
 
 class AlternativeFinancialDataEOD(SentimentFinancialData, FinancialNews,
                                   MacroEconomicIndicators, EconomicEventsData):
