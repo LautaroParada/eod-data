@@ -248,7 +248,7 @@ resp = client.get_bulk_markets(exchange='NYSE', type_='dividends')
 # Request market and extended data for the selected US symbols.
 resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL.US,MSFT.US,QMOM.US,HOOD.US', filter_='extended')
 ```
-- **Get List of Tickers**: Request available exchanges, and instruments for each exchange or market.
+- **Get List of Tickers**: Request available exchanges, and instruments for each exchange or market. The EOD API support more than 60 exchanges all around the world. All US exchanges are combined into one virtual exchange ```'US'``` which includes NYSE, NASDAQ, NYSE ARCA, and OTC/PINK tickers. All indices and commodities are in virtual exchanges ```INDX``` and ```COMM```, respectively.
 	- Parameters:
 		- ```exchange```(str): Required - Name of the exchange or market to request symbols. This parameter is only valid for especif exchanges, check the usage for details.
 	- Usage:
