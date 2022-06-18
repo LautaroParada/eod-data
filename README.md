@@ -194,17 +194,17 @@ resp = client.get_insider_transactions()
 # Get insider transactions for a specific company
 resp = client.get_insider_transactions(code='NFLX.US')
 ```
-- **Fundamental Data API**: Access to fundamental data API for stocks, ETFs, Mutual Funds, and Indices from different exchanges and countries. Almost all major US, UK, EU, India, LATAM, and Asia exchanges are available.
+- **Fundamental Data: Stocks, ETFs, Mutual Funds, Indices**: Access to fundamental data API for stocks, ETFs, Mutual Funds, and Indices from different exchanges and countries. Almost all major US, UK, EU, India, LATAM, and Asia exchanges are available.
 	- Parameters:
-		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```symbol```(str): Required - Name of the instrument to retrieve data. Consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}. For example, MCD.MX for Mexican Stock Exchange or MCD.US for NYSE. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about the stock markets the API support.
 		- ```filter_```(str): Optional - Multi-layer filtering helps to reduce the output of the request. Different layers are divided with ```::``` and it’s possible to have as many layers as you need. Additionally, you can request multiple fields from a particular layer using ```,```. Be aware that the order of the layers is from the macro keys to the micro-level.
 	- Usage:
 ```python
 resp = client.get_fundamental_equity('QVAL.US') # ETF
 # Stock - request the quarterly statements
 resp = client.get_fundamental_equity('AAPL.US', filter_='Financials::Balance_Sheet::quarterly')
-# Stock - Request specific fields from the General layer
-resp = client.get_fundamental_equity('AAPL.US', filter_='General::Code,General,Earnings')
+# Most basic call for each category
+resp = client.get_fundamental_equity('AAPL.US') # Stock
 resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund
 resp = client.get_fundamental_equity('GSPC.INDX') # Index
 ```
@@ -215,13 +215,13 @@ resp = client.get_fundamental_equity('GSPC.INDX') # Index
 	- Usage:
 ```python
 # Upcoming Earnings
-resp = client.get_calendar_earnings(symbols='AAPL.US,MSFT.US,AI.PA', to='2020-12-01')
+resp = client.get_calendar_earnings()
 # Earnings Trends
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA')
 # Upcoming IPOs
-resp = client.get_calendar_ipos(from_='2016-01-01')
+resp = client.get_calendar_ipos(from_='2022-01-01')
 # Upcoming Splits
-resp = client.get_calendar_splits(from_='2016-01-01')
+resp = client.get_calendar_splits(from_='2022-01-01')
 ```
 - **Bonds Fundamentals API**: Bond covenants details.
 	- Parameters:
