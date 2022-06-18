@@ -161,17 +161,16 @@ resp = client.get_instrument_ta('CL.COMM', function='sar', from_='2020-03-01', t
 ```python
 resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800', to='1620414000')
 ```
-- **Options Data API**:  Stock options data for top US stocks from NYSE and NASDAQ, the data for Options starts from April 2018. Options data is updated daily; however, the API does not provide a history for options contracts prices or other related data. That means: for each contract, there is only the current price, bid/ask, etc. 
-1. **IMPORTANT!** For backward compatibility, you should use the ```from_``` parameter with any value before the expiration date, the API recommends '2000-01-01'. 
-2. **Note**: option greeks and some additional value are available only for options with expiration date Feb 15, 2019, or later.
+- **Options Data API**: The EOD API provides stock options data for top US stocks from NYSE and NASDAQ. The data for Options starts from April 2018, and options data is updated daily. To get historical options data, include the query parameters ```from_``` and ```to``` field in the request. The method will return, for each option expiration date in the specified range, summary information covering all option contracts with that expiration date and details of each option contract. These details include both primary option data and the greeks.
 	- Parameters:
-		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```symbol```(str): Required - Name of the instrument to retrieve data. Consists of two parts: ```{SYMBOL_NAME}.{EXCHANGE_ID}```, then you can use, for example, MCD.MX for Mexican Stock Exchange. or MCD.US for NYSE. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about stock markets the EOD API do support.
 		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
 		- ```contract_name```(str): Optional - Name of a particular contract.
-		- ```trade_date_to```(str): Optional - filters OPTIONS by ```lastTradeDateTime```. Default value: is blank.
+		- ```trade_date_to```(str): Optional - filters OPTIONS by ```lastTradeDateTime```. Default value: is None.
+		- ```trade_date_from ```(str): Optional -  filters OPTIONS by ```lastTradeDateTime```. Default value: None.
 	- Usage:
 ```python
-resp = client.get_stock_options('AAPL.US')
+resp = client.get_stock_options('AAPL.US', from_='2022-01-01', to='2022-05-15')
 ```
 ### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
 - **Insider Transactions API**: The insider transactions API data is available for all US companies that report Form 4 to the SEC. Insider trading involves trading in a public company’s stock by someone who has non-public, material information about that stock for any reason.
