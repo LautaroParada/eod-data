@@ -59,7 +59,7 @@ resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet:
 resp = client.get_fundamental_equity('QVAL.US') # ETF - 
 resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund - 
 resp = client.get_fundamental_equity('GSPC.INDX') # Index - 
-resp = client.get_fundamentals_bulk(exchange='US', symbols='MSFT,AAPL,BMW.XETRA,SAP.F') # ERROR
+resp = client.get_fundamentals_bulk(exchange='SN') # 
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 # Calendar. Upcoming Earnings, Trends, IPOs and Splits
 resp = client.get_calendar_earnings() # 
@@ -92,7 +92,7 @@ DONE - 5. Change the symbol to symbols parameters from the get_fundamental_bulk
 
 # Bulk API for EOD, Splits and Dividends
 # additional parameters: type, date, symbols, filter
-resp = client.get_bulk_markets(exchange='US', date='2022-01-01', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
+resp = client.get_bulk_markets(exchange='SN')
 # Exchanges API. Get List of Tickers
 resp = client.get_exchanges() # Get List of Exchanges - 
 resp = client.get_exchange_symbols(exchange='SN') # Get List of Tickers (Exchange Symbols) - 
