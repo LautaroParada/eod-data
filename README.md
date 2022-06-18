@@ -125,18 +125,16 @@ resp = client.get_prices_live('AAL.LSE', filter_='close')
 # Multple instruments
 resp = client.get_prices_live('AAL.LSE', s='GLD.US,BTC-USD.CC,V.US,EURUSD.FOREX,CT.COMM,EURIBOR3M.MONEY,SW10Y.GBOND')
 ```
-- **Historical Splits, Dividends and Short Interest API**: Get the historical dividends, splits, and short interest for any stock.
+- **Historical Splits and Dividends API**: Get the historical dividends and splits for any stock worldwide.
 	- Parameters:
-		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```symbol```(str): Required - Name of the instrument to retrieve data. Consists of two parts: ```{SYMBOL_NAME}.{EXCHANGE_ID}```, then you can use, for example, MCD.MX for Mexican Stock Exchange. or MCD.US for NYSE. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about stock markets the EOD API do support.
 		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
 	- Usage:
 ```python
 # Get dividend data
 resp = client.get_dividends('AAPL.US', from_='2000-03-01')
-# Get short interest data (indicates how many shares of a company are currently sold short and not yet covered. Indicates the sentiment around a company)
-resp = client.get_short_interest('AAPL.US')
 # Get the splits for a company
-resp = client.get_splits('AAPL.US', from_='1994-01-01', to='2020-10-24')
+resp = client.get_splits('AAPL.US', from_='1994-01-01', to='2022-01-01')
 ```
 - **Technical Indicator API**: Retrieve technical data associated with the price action of an instrument. The data is mainly oriented to technical indicators rather than any other price-action methodology (e.g., Elliot Waves, Wyckoff, etc.)
 	- Parameters:
