@@ -232,8 +232,8 @@ resp = client.get_calendar_splits(from_='2022-01-01')
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35.BOND')
 ```
 
-### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
-- **Bulk API for EOD, Splits and Dividends**: This method allows you to download the data for an entire exchange for a particular day. It works for end-of-day historical data feed and splits and dividends data as well. You can also use NYSE or NASDAQ as exchange symbols for US tickers to get data only for NYSE or NASDAQ exchange. With this method is no longer necessary to perform thousands and thousands of API requests per day.
+### Exchanges (Stock Market) Financial APIs [:arrow_up:](#eod-historical-data-sdk)
+- **Bulk API for EOD, Splits and Dividends**: This method allows you to download the data for an **entire exchange** for a particular day. It works for the end-of-day historical data feed, splits, and dividends. With this method is no longer necessary to perform thousands and thousands of API requests per day.
 	- Parameters:
 		- ```type_```(str): Optional - Which type of data to return. The available options are ```'splits'``` or ```'dividends'```. If it's blank, the default response will be the market end-of-day data.
 		- ```date```(str): Optional - By default, the data for last trading day will be downloaded, but if you need any specific date enter a date with the following format YYYY-MM-DD
@@ -246,7 +246,7 @@ resp = client.get_bulk_markets(exchange='SN')
 # Request the latest dividends for the companies that trade in NYSE.
 resp = client.get_bulk_markets(exchange='NYSE', type_='dividends')
 # Request market and extended data for the selected US symbols.
-resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL,MSFT,QMOM,HOOD', filter_='extended')
+resp = client.get_bulk_markets(exchange='US', date='2021-08-06', symbols='QVAL.US,MSFT.US,QMOM.US,HOOD.US', filter_='extended')
 ```
 - **Get List of Tickers**: Request available exchanges, and instruments for each exchange or market.
 	- Parameters:
