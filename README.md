@@ -113,9 +113,9 @@ resp = client.get_prices_eod('SW10Y.GBOND', period='w')
 # Corporate Bond
 resp = client.get_prices_eod('US00213MAS35.BOND')
 ```
-- **Live (Delayed) Stock Prices API**: The method supports almost all symbols and exchanges worldwide, and the prices provided have a 15-20 minutes delay. The method also offers combinations of multiple tickers with just one request. The only supported interval is the 1-minute interval. **The UNIX standard is used for the timestamp**.
+- **Live (Delayed) Stock Prices API**: The method supports almost all symbols and exchanges worldwide, and the prices provided have a 15-20 minutes delay. The method also offers combinations of multiple tickers with just one request. *The only supported interval is the 1-minute interval.* **The UNIX standard is used for the timestamp**.
 	- Parameters:
-		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```symbol```(str): Required - Name of the instrument(s) to retrieve data.
 		- ```s```(str): Optional - Additional instruments to retrieve data.
 		- ```filter_```(str): Optional - Name of the field to retrieve, check the response for the available fields.
 	- Usage:
@@ -123,7 +123,7 @@ resp = client.get_prices_eod('US00213MAS35.BOND')
 # One instrument
 resp = client.get_prices_live('AAL.LSE', filter_='close')
 # Multple instruments
-resp = client.get_prices_live('AAL.LSE', s='GLD,QVAL,QMOM,EUR.FOREX,VTI,SW10Y.GBOND')
+resp = client.get_prices_live('AAL.LSE', s='GLD.US,BTC-USD.CC,V.US,EURUSD.FOREX,CT.COMM,EURIBOR3M.MONEY,SW10Y.GBOND')
 ```
 - **Historical Splits, Dividends and Short Interest API**: Get the historical dividends, splits, and short interest for any stock.
 	- Parameters:
