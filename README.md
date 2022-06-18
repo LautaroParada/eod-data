@@ -288,7 +288,7 @@ resp = client.get_instrument_screener(signals='200d_new_hi,wallstreet_hi')
 	- Usage:
 ```python
 # Search instrument with the word .com
-resp = client.get_search_instrument(query_string='.com')
+resp = client.get_search_instrument(query_string='crypto')
 # Search bonds related to Chile
 resp = client.get_search_instrument(query_string='Chile', bonds_only=1)
 ```
