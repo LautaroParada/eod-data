@@ -11,6 +11,8 @@
 2. [Requirements](#requirements-arrow_up)
 3. [Installation](#installation-arrow_up)
 4. [Demo](#demo-arrow_up)
+	- [REST API](#rest-api-arrow_up)
+	- [Websocket](#websocket-arrow_up)
 5. [Documentation](#documentation-arrow_up)
 	- [Historical Prices, Splits and Dividends Data APIs](#historical-prices-splits-and-dividends-data-apis-arrow_up)
 	- [Fundamental Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
@@ -35,7 +37,7 @@ pip install eod
 ```
 
 ## Demo [:arrow_up:](#eod-historical-data-sdk)
-
+### REST API [:arrow_up:](#eod-historical-data-sdk)
 It's highly recommendable to save your API keys in the environment variable. A short tutorial can be founded in the following video:
 
 [![Demo enviroment variables](https://j.gifs.com/LZlj1D.gif)](https://www.youtube.com/watch?v=IolxqkL7cD8)
@@ -47,22 +49,40 @@ import os
 api_key = os.environ['API_EOD']
 
 from eod import EodHistoricalData
-from random import randint
 
 # Create the instance 
 client = EodHistoricalData(api_key)
 # predefine some instruments
 symbol='AAPL.US'
 goverment_bond = 'SW10Y.GBOND'
-corporate_bond = 'US00213MAS35.BOND'
 
 # Quick usage
 # weekly prices for the Swiss goverment bond
 stock_prices = client.get_prices_eod(goverment_bond, period='w', order='a')
-# Short interest
-get_short_interest = client.get_short_interest(symbol, to='2021-07-04')
+
 # Fundamental data for the stock
-resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet::quarterly') # Stock - check
+resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet::quarterly')
+```
+### Websocket [:arrow_up:](#eod-historical-data-sdk): 
+The EOD API have real-time data with a delay of less than 50ms via WebSockets for the US market, FOREX, and Cryptocurrencies. For US stocks our real-time data API supports pre-market and post-market hours (from 4 am till 8 pm EST). WebSockets API is available within All World Extended and/or All-In-One packages. More details in the [documentation](https://eodhistoricaldata.com/financial-apis/new-real-time-data-api-websockets/)
+```python
+import os
+import json
+# load the key from the enviroment variables
+api_key = os.environ['API_EOD']
+
+# Import WebSocket client library
+from websocket import create_connection
+
+# Connect to WebSocket API and subscribe to trade feed for Ethereum and Bitcoin
+ws = create_connection(f"wss://ws.eodhistoricaldata.com/ws/crypto?api_token={api_key}")
+ws.send('{"action": "subscribe", "symbols": "ETH-USD,BTC-USD"}')
+
+# Infinite loop waiting for WebSocket data
+while True:
+    result = ws.recv()
+    result = json.loads(result)
+    print(result)
 ```
 
 ## Documentation [:arrow_up:](#eod-historical-data-sdk)
@@ -70,7 +90,7 @@ Please be aware that some descriptions will come directly from the API's documen
 
 ```python
 
-import # catchy library name
+from eod import EodHistoricalData
 # create the instance of the SDK
 api_key = 'YOUR_API_KEY_GOES_HERE'
 client = EodHistoricalData(api_key)
