@@ -210,17 +210,6 @@ resp = client.get_calendar_ipos(from_='2016-01-01')
 # Upcoming Splits
 resp = client.get_calendar_splits(from_='2016-01-01')
 ```
-- **Macroeconomics Data and Macro Indicators API**: Macroeconomics is a part of economics dealing with the performance, structure, behavior, and decision-making of an economy as a whole. The Macroeconomics data API includes regional, national, and global economies. EOD provides the data for more than 30 macro indicators such as GDP, unemployment rates, national income, price indices, inflation rates, consumption, international trades, and many other significant indicators.
-	- Parameters:
-		- ```country```(str): Required - Defines the country for which the indicator will be shown. The country should be defined in the Alpha-3 ISO format. Possible values: CHL, FRA, DEU, etc.
-		- ```indicator```(str): Optional - Defines which macroeconomics data indicator will be shown. The default value is ```'gdp_current_usd'```.
-	- Usage:
-```python
-# Get the available macroindicators names
-resp = client.get_macro_indicator_name()
-# Request the Chilean interest rate
-resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
-```
 - **Bonds Fundamentals API**: Bond covenants details.
 	- Parameters:
 		- ```cusip```(str): Required - CUSIP of a particular bond, it’s also could be an ISIN. Other IDs are not supported at the moment.
@@ -327,6 +316,17 @@ specific_tag = random.choice(tags) # choose a random tag from the available list
 resp = client.get_financial_news(s='AAL.LSE')
 # Request data for the selected tag
 resp = client.get_financial_news(t=specific_tag)
+```
+- **Macroeconomics Data and Macro Indicators API**: Macroeconomics is a part of economics dealing with the performance, structure, behavior, and decision-making of an economy as a whole. The Macroeconomics data API includes regional, national, and global economies. EOD provides the data for more than 30 macro indicators such as GDP, unemployment rates, national income, price indices, inflation rates, consumption, international trades, and many other significant indicators.
+	- Parameters:
+		- ```country```(str): Required - Defines the country for which the indicator will be shown. The country should be defined in the Alpha-3 ISO format. Possible values: CHL, FRA, DEU, etc.
+		- ```indicator```(str): Optional - Defines which macroeconomics data indicator will be shown. The default value is ```'gdp_current_usd'```.
+	- Usage:
+```python
+# Get the available macroindicators names
+resp = client.get_macro_indicator_name()
+# Request the Chilean interest rate
+resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 ```
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
