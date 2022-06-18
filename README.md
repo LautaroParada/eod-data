@@ -173,19 +173,28 @@ resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800'
 resp = client.get_stock_options('AAPL.US', from_='2022-01-01', to='2022-05-15')
 ```
 ### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
-- **Insider Transactions API**: The insider transactions API data is available for all US companies that report Form 4 to the SEC. Insider trading involves trading in a public company’s stock by someone who has non-public, material information about that stock for any reason.
+- **Historical market capitalization API**: Get historical Market Capitalization data, EOD Historical data cover all US stocks traded on NYSE/NASDAQ from 2017. Soon they will start to cover cryptocurrencies with historical market capitalization.
 	- Parameters:
-		- ```code```(str): Optional - Name of the company to retrieve data. By default, all possible symbols will be displayed.
+		- ```symbol```(str): Required - Name of the instrument to retrieve data. Consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}. For example, MCD.MX for Mexican Stock Exchange or MCD.US for NYSE. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about the stock markets the API support.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```.
+	- Usage:
+```python
+# Request the historical market capitalization for Visa
+resp = client.get_market_cap(symbol='V.US', from_='2020-01-01')
+```
+- **Insider Transactions API**: The insider transactions API data is available for all US companies that report Form 4 to SEC. Insider trading involves trading in a public company’s stock by someone with non-public information about that stock for any reason. In some cases, insider transactions could be helpful for making investment decisions.
+	- Parameters:
+		- ```code```(str): Optional - Name of the company to retrieve data. ***By default, all possible symbols will be displayed.***
 		- ```limit```(int): Optional - The limit for entries per result, from 1 to 1000. Default value: 100.
 		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
 	- Usage:
 ```python
-# Get the insider transactions for all companies
+# Get the most recent insider transactions for all companies
 resp = client.get_insider_transactions()
 # Get insider transactions for a specific company
-resp = client.get_insider_transactions(code='AAPL.US')
+resp = client.get_insider_transactions(code='NFLX.US')
 ```
-- **Fundamental Data: Stocks, ETFs, Mutual Funds, Indices**: Access to fundamental data API for stocks, ETFs, Mutual Funds, and Indices from different exchanges and countries. Almost all major US, UK, EU, India, LATAM, and Asia exchanges are available.
+- **Fundamental Data API**: Access to fundamental data API for stocks, ETFs, Mutual Funds, and Indices from different exchanges and countries. Almost all major US, UK, EU, India, LATAM, and Asia exchanges are available.
 	- Parameters:
 		- ```symbol```(str): Required - Name of the instrument to retrieve data.
 		- ```filter_```(str): Optional - Multi-layer filtering helps to reduce the output of the request. Different layers are divided with ```::``` and it’s possible to have as many layers as you need. Additionally, you can request multiple fields from a particular layer using ```,```. Be aware that the order of the layers is from the macro keys to the micro-level.
@@ -220,16 +229,6 @@ resp = client.get_calendar_splits(from_='2016-01-01')
 	- Usage:
 ```python
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
-```
-
-- **Historical market capitalization API**: Get historical Market Capitalization data, EOD Historical data cover all US stocks traded on NYSE/NASDAQ from 2017. Soon they will start to cover cryptocurrencies with historical market capitalization.
-	- Parameters:
-		- ```symbol```(str): Required - Name of the instrument to retrieve data. Consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}. For example, MCD.MX for Mexican Stock Exchange or MCD.US for NYSE. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about the stock markets the API support.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```.
-	- Usage:
-```python
-# Request the historical market capitalization for Visa
-resp = client.get_market_cap(symbol='V.US', from_='2020-01-01')
 ```
 
 ### Exchanges Financial APIs [:arrow_up:](#eod-historical-data-sdk)
