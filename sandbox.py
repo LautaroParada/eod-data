@@ -66,14 +66,12 @@ resp = client.get_calendar_earnings() #
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA') # 
 resp = client.get_calendar_ipos(from_='2022-01-01') # 
 resp = client.get_calendar_splits(from_='2022-01-01')
-# Macroeconomics Data and Macro Indicators API
-resp = client.get_macro_indicator_name()
-resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 # Insider Transactions API
 resp = client.get_insider_transactions(limit=100)
 # Historical market capitalization
 resp = client.get_market_cap(symbol='V.US', from_='2020-01-01')
-
+# Bond fundamentals
+resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 
 # Questions and changes
 
@@ -84,7 +82,7 @@ DONE - 3. Add the endpoint call related to insider transactions
 DONE - 4. Check if the endpoint support the Filter Fields and WEBSERVICE support.
 DONE - 5. Change the symbol to symbols parameters from the get_fundamental_bulk
 6. Contact the EOD team to check the bulk fundamentals api
-7. only the to parameter of the get_calendar earnings is not working
+DONE - 7. only the to parameter of the get_calendar earnings is not working
 
 """
 
