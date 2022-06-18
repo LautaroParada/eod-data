@@ -138,19 +138,19 @@ resp = client.get_splits('AAPL.US', from_='1994-01-01', to='2022-01-01')
 ```
 - **Technical Indicator API**: Retrieve technical data associated with the price action of an instrument. The data is mainly oriented to technical indicators rather than any other price-action methodology (e.g., Elliot Waves, Wyckoff, etc.)
 	- Parameters:
-		- ```symbol```(str): Required - Name of the instrument to retrieve data.
+		- ```symbol```(str): Required - Name of the instrument to retrieve data. Consists of two parts: ```{SYMBOL_NAME}.{EXCHANGE_ID}```, then you can use, for example, MCD.MX for Mexican Stock Exchange. or MCD.US for NYSE. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about stock markets the EOD API do support.
 		- ```function```(str): Required - The function that will be applied to data series to get technical indicator data.
-		- ```period```(int): Optional - The number of data points used to calculate each indicator value. Valid range from 2 to 100000 with. The default value is 50.
+		- ```period```(int): Optional - The number of data points used to calculate each indicator value. Valid range from 2 to 100000. The default value is 50.
 		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
 		- ```order```(str): Optional – Use ```'a'``` for ascending dates (from old to new) and ```'d'``` for descending dates (from new to old). By default, dates are shown in ascending order.
-		- ```splitadjusted_only```(int): Optional – The default value is 0. By default, the API calculates data for some functions by closes adjusted with splits and dividends. If you need to calculate the data by closes adjusted only with splits, set this parameter to 1. The available functions for technical analysis are displayable via the ```get_get_indicator_name()``` method.
-		- ```filter_```(str): Optional - Ability to get only the last value. The syntax is the following: ```last_indicator_name```, for instance, ```last_ema```, ```last_volume```, etc.
+		- ```splitadjusted_only```(int): Optional – The default value is 0. By default, the API calculates data for some functions by closes adjusted with splits and dividends. If you need to calculate the data by closes adjusted only with splits, **set this parameter to 1**. The available functions for technical analysis are displayable via the ```get_get_indicator_name()``` method.
+		- ```filter_```(str): Optional - Ability to get only the **last value**. The syntax is the following: ```last_indicator_name```, for instance, ```last_ema```, ```last_volume```, etc.
 	- Usage:
 ```python
 # Get the available indicators in the API. This method does not accept any parameter.
 resp = client.get_indicator_name()
 # Get data for a specific indicator, in this case the parabolic SAR
-resp = client.get_instrument_ta('AAPL', function='sar', from_='2020-03-01', to='2021-06-30', period=50, filter_='last_sar')
+resp = client.get_instrument_ta('CL.COMM', function='sar', from_='2020-03-01', to='2021-06-30', period=50, filter_='last_sar')
 ```
 - **Intraday Historical Data API**: Get intraday historical stock price data for US (NYSE and NASDAQ), Canada, and MOEX tickers. The 1-minute interval includes the pre-market and after-hours trading data from 2004 (more than 15 years of the data), and for the 5-minute intervals, the data starts from October 2020. For other tickers (mainly for international instruments), it is only available the 5-minute intervals and only from October 2020.
 	- Parameters:
