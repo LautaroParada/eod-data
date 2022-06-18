@@ -14,7 +14,7 @@
 	- [REST API](#rest-api-arrow_up)
 	- [Websocket](#websocket-arrow_up)
 5. [Documentation](#documentation-arrow_up)
-	- [Historical Prices, Splits and Dividends Data APIs](#historical-prices-splits-and-dividends-data-apis-arrow_up)
+	- [Stock Market Prices, Splits and Dividends Data API](#stock-market-prices-splits-and-dividends-data-api-arrow_up)
 	- [Fundamental Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
 	- [Exchanges Financial APIs](#exchanges-financial-apis-arrow_up)
 	- [Alternative Financial Data APIs](#alternative-financial-data-arrow_up)
@@ -96,7 +96,7 @@ api_key = 'YOUR_API_KEY_GOES_HERE'
 client = EodHistoricalData(api_key)
 ```
 
-### Historical Prices, Splits and Dividends Data APIs [:arrow_up:](#eod-historical-data-sdk)
+### Stock Market Prices, Splits and Dividends Data API [:arrow_up:](#eod-historical-data-sdk)
 - **Stock Price Data API (End-Of-Day Historical Data)**: Retrieve end-of-day data for Stocks, ETFs, Mutual Funds, Bonds (Government and Corporate), Cryptocurrencies, and FOREX pairs.
 	- Parameters:
 		- ```symbol```(str): Required - Name of the instrument to retrieve data.
