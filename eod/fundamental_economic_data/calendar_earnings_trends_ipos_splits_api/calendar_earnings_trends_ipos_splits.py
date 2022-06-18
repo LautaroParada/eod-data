@@ -13,7 +13,7 @@ class CalendarEarningsTrendsIposSplits(RequestHandler):
         self.URL_EARNINGS = 'https://eodhistoricaldata.com/api/calendar/earnings'
         self.URL_TRENDS = 'https://eodhistoricaldata.com/api/calendar/trends'
         self.URL_IPOS = 'https://eodhistoricaldata.com/api/calendar/ipos'
-        self.URL_SPLITS = 'https://eodhistoricaldata.com/api/calendar/splits'
+        self.URL_SPLITS_CALENDAR = 'https://eodhistoricaldata.com/api/calendar/splits'
         super().__init__(api_key, timeout)
 
     def get_calendar_earnings(self, **query_params):
@@ -87,5 +87,5 @@ class CalendarEarningsTrendsIposSplits(RequestHandler):
             Historical and upcoming splits
 
         """
-        self.endpoint = self.URL_SPLITS
+        self.endpoint = self.URL_SPLITS_CALENDAR
         return super().handle_request(self.endpoint, query_params)

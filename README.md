@@ -13,8 +13,9 @@
 4. [Demo](#demo-arrow_up)
 5. [Documentation](#documentation-arrow_up)
 	- [Historical Prices, Splits and Dividends Data APIs](#historical-prices-splits-and-dividends-data-apis-arrow_up)
-	- [Fundamental and Economic Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
+	- [Fundamental Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
 	- [Exchanges Financial APIs](#exchanges-financial-apis-arrow_up)
+	- [Alternative Financial Data APIs](#alternative-financial-data-arrow_up)
 6. [Disclaimer](#disclaimer-arrow_up)
 
 ## General description [:arrow_up:](#eod-historical-data-sdk)
@@ -153,21 +154,6 @@ resp = client.get_prices_intraday('EUR.FOREX', interval='5m', from_='1620136800'
 resp = client.get_stock_options('AAPL.US')
 ```
 ### Fundamental and Economic Financial Data APIs [:arrow_up:](#eod-historical-data-sdk)
-- **Economic events API**: It provides the past and future events from all around the world like Retail Sails, Bond Auctions, PMI Releases and many other Economic Events data.
-	- Parameters:
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
-		- ```country```(string). Optional - The country code in ISO 3166 format, 2 symbols.
-		- ```comparison```(string): Optional - Filter events by their periodicity. Possible values: ```mom```, ```qoq```, ```yoy```.
-		- ```offset```(int): Optional - Possible values from 0 to 1000.
-		- ```limit```(int): Optional - The maximum amount of data to retrieve. Possible values from 0 to 1000.
-	- Usage:
-```python
-# Get the default economic events data (the United States and all comparisons included)
-resp = client.get_economic_events()
-
-# Retrieve the economic events for Chile for the 4th quarter using a Year-over-Year comparison, and limit the amount of data to 5 rows.
-client.get_economic_events(from_='2020-10-01', to_='2020-12-31', country='CH', limit=5, comparison='yoy')
-```
 - **Insider Transactions API**: The insider transactions API data is available for all US companies that report Form 4 to the SEC. Insider trading involves trading in a public company’s stock by someone who has non-public, material information about that stock for any reason.
 	- Parameters:
 		- ```code```(str): Optional - Name of the company to retrieve data. By default, all possible symbols will be displayed.
@@ -208,17 +194,6 @@ resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA')
 resp = client.get_calendar_ipos(from_='2016-01-01')
 # Upcoming Splits
 resp = client.get_calendar_splits(from_='2016-01-01')
-```
-- **Macroeconomics Data and Macro Indicators API**: Macroeconomics is a part of economics dealing with the performance, structure, behavior, and decision-making of an economy as a whole. The Macroeconomics data API includes regional, national, and global economies. EOD provides the data for more than 30 macro indicators such as GDP, unemployment rates, national income, price indices, inflation rates, consumption, international trades, and many other significant indicators.
-	- Parameters:
-		- ```country```(str): Required - Defines the country for which the indicator will be shown. The country should be defined in the Alpha-3 ISO format. Possible values: CHL, FRA, DEU, etc.
-		- ```indicator```(str): Optional - Defines which macroeconomics data indicator will be shown. The default value is ```'gdp_current_usd'```.
-	- Usage:
-```python
-# Get the available macroindicators names
-resp = client.get_macro_indicator_name()
-# Request the Chilean interest rate
-resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
 ```
 - **Bonds Fundamentals API**: Bond covenants details.
 	- Parameters:
@@ -272,24 +247,6 @@ resp = client.get_exchange_symbols(exchange='ETLX')
 # Request the London Stock Exchange details
 resp = client.get_exchange_details(exchange='LSE')
 ```
-- **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and specific tickers according to the given parameters. Despite that all parameters are optional, you need to input at least one of them. See the usage for guidance.
-	- Parameters:
-		- ```s```(str): Optional - The ticker code to get news for.
-		- ```t```(str): Optional - The tag to get news on a given topic. You can find the list of supported topics in the usage area.
-		- ```limit```(str): Optional - The number of results should be returned with the query. Default value: 50, minimum value: 1, maximum value: 1000.
-		- ```offset```(str): Optional - The offset of the data. Default value: 0, minimum value: 0, maximum value: 100. For example, to get 100 symbols starting from 200 you should use limit=100 and offset=200.
-		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
-	- Usage:
-```python
-# Get the available financial tags
-tags = client.get_financial_tags()
-import random
-specific_tag = random.choice(tags) # choose a random tag from the available list
-# Request the news from Anglo American
-resp = client.get_financial_news(s='AAL.LSE')
-# Request data for the selected tag
-resp = client.get_financial_news(t=specific_tag)
-```
 - **Stock Market Screener API**: Filter stocks based on some criteria. ***THIS METHOD IS UNDER BETA MODE; ONLY THE SIGNALS PARAMETER WORKS, THE FILTERS IS NOT. PLEASE USE IT SEPARATELY***
 	- Parameters:
 		- ```filters```(--): **DO NOT USE THIS PARAMTER, IS UNDER REVISION**
@@ -315,6 +272,61 @@ resp = client.get_instrument_screener(signals='200d_new_hi,wallstreet_hi')
 resp = client.get_search_instrument(query_string='.com')
 # Search bonds related to Chile
 resp = client.get_search_instrument(query_string='Chile', bonds_only=1)
+```
+
+### Alternative Financial Data [:arrow_up:](#eod-historical-data-sdk)
+- **Sentiment Financial Data**: Retrieve sentimental data calculated from the EOD historical data API. The aggregated sentiment data from the EOD historical API is collected from the news (and in the nearest future from tweets) for stocks, ETFs, Forex, and cryptocurrencies data. The data is aggregated by day.
+	- Paramaters:
+		- ```s```(str): Required - Name of the instrument to retrieve data. Consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}. For example, MCD.MX for Mexican Stock Exchange or MCD.US for NYSE. You can retrieve multiple instruments separating them by commas. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about the stock markets the API support.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
+	- Usage:
+```python
+# Sentiment Financial Data for Visa
+resp = client.get_sentiment(s='V.US')
+```
+- **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and specific tickers according to the given parameters. Despite that all parameters are optional, you need to input at least one of them. See the usage for guidance.
+	- Parameters:
+		- ```s```(str): Optional - The ticker code to get news for.
+		- ```t```(str): Optional - The tag to get news on a given topic. You can find the list of supported topics in the usage area.
+		- ```limit```(str): Optional - The number of results should be returned with the query. Default value: 50, minimum value: 1, maximum value: 1000.
+		- ```offset```(str): Optional - The offset of the data. Default value: 0, minimum value: 0, maximum value: 100. For example, to get 100 symbols starting from 200 you should use limit=100 and offset=200.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
+	- Usage:
+```python
+# Get the available financial tags
+tags = client.get_financial_tags()
+import random
+specific_tag = random.choice(tags) # choose a random tag from the available list
+# Request the news from Anglo American
+resp = client.get_financial_news(s='AAL.LSE')
+# Request data for the selected tag
+resp = client.get_financial_news(t=specific_tag)
+```
+- **Macroeconomics Data and Macro Indicators API**: Macroeconomics is a part of economics dealing with the performance, structure, behavior, and decision-making of an economy as a whole. The Macroeconomics data API includes regional, national, and global economies. EOD provides the data for more than 30 macro indicators such as GDP, unemployment rates, national income, price indices, inflation rates, consumption, international trades, and many other significant indicators.
+	- Parameters:
+		- ```country```(str): Required - Defines the country for which the indicator will be shown. The country should be defined in the Alpha-3 ISO format. Possible values: CHL, FRA, DEU, etc.
+		- ```indicator```(str): Optional - Defines which macroeconomics data indicator will be shown. The default value is ```'gdp_current_usd'```.
+	- Usage:
+```python
+# Get the available macroindicators names
+resp = client.get_macro_indicator_name()
+# Request the Chilean interest rate
+resp = client.get_macro_indicator('CHL', indicator='real_interest_rate')
+```
+- **Economic events API**: It provides the past and future events from all around the world like Retail Sails, Bond Auctions, PMI Releases and many other Economic Events data.
+	- Parameters:
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
+		- ```country```(string). Optional - The country code in ISO 3166 format, 2 symbols.
+		- ```comparison```(string): Optional - Filter events by their periodicity. Possible values: ```mom```, ```qoq```, ```yoy```.
+		- ```offset```(int): Optional - Possible values from 0 to 1000.
+		- ```limit```(int): Optional - The maximum amount of data to retrieve. Possible values from 0 to 1000.
+	- Usage:
+```python
+# Get the default economic events data (the United States and all comparisons included)
+resp = client.get_economic_events()
+
+# Retrieve the economic events for Chile for the 4th quarter using a Year-over-Year comparison, and limit the amount of data to 5 rows.
+client.get_economic_events(from_='2020-10-01', to_='2020-12-31', country='CH', limit=5, comparison='yoy')
 ```
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
