@@ -16,7 +16,7 @@
 5. [Documentation](#documentation-arrow_up)
 	- [Stock Market Prices, Splits and Dividends Data API](#stock-market-prices-splits-and-dividends-data-api-arrow_up)
 	- [Fundamental Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
-	- [Exchanges Financial APIs](#exchanges-financial-apis-arrow_up)
+	- [Exchanges Financial APIs](#exchanges-stock-market-financial-apis-arrow_up)
 	- [Alternative Financial Data APIs](#alternative-financial-data-arrow_up)
 6. [Disclaimer](#disclaimer-arrow_up)
 
@@ -207,6 +207,7 @@ resp = client.get_fundamental_equity('AAPL.US', filter_='Financials::Balance_She
 resp = client.get_fundamental_equity('AAPL.US') # Stock
 resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund
 resp = client.get_fundamental_equity('GSPC.INDX') # Index
+resp = client.get_fundamental_equity('XRP-USD.CC') # Cryptocurrency
 ```
 - **Calendar. Upcoming Earnings, Trends, IPOs and Splits**
 	- Parameters:
@@ -300,8 +301,21 @@ resp = client.get_search_instrument(query_string='Chile', bonds_only=1)
 		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```
 	- Usage:
 ```python
-# Sentiment Financial Data for Visa
+# Sentiment data for Visa
 resp = client.get_sentiment(s='V.US')
+# Sentiment data for multiple stocks
+resp = client.get_sentiment(s='TRI.US,TSLA.US,NC.US,CCJ.US')
+```
+- **Tweets Sentiment Data**: Get the tweet's sentiment data. The data is collected from the tweets mentioning the particular ticker, and the information is aggregated daily.
+	- Parameters:
+		- ```s```(str): Required - Name of the instrument to retrieve data. Consists of two parts: {SYMBOL_NAME}.{EXCHANGE_ID}. For example, MCD.MX for Mexican Stock Exchange or MCD.US for NYSE. You can retrieve multiple instruments separating them by commas. Check the [list of supported exchanges](https://eodhistoricaldata.com/financial-apis/list-supported-exchanges/) to get more information about the stock markets the API support.
+		- ```from_```(str) and ```to```(str): Optional - The format is 'YYYY-MM-DD'. If you need data from Jan 5, 2017, to Feb 10, 2017, you should use ```from_='2017-01-05'``` and ```to='2017-02-10'```.
+	- Usage:
+```python
+# Tweets Sentiment Data for Thomson Reuters
+resp = client.get_financial_tweets(s='TRI.US')
+# Tweets Sentiment Data for multiple stocks
+resp = client.get_financial_tweets(s='TRI.US,TSLA.US,NC.US,CCJ.US')
 ```
 - **Financial News API**: The Financial News method is a powerful tool that helps you get company news and filter out them by date, type of news, and specific tickers according to the given parameters. Despite that all parameters are optional, you need to input at least one of them. See the usage for guidance.
 	- Parameters:
