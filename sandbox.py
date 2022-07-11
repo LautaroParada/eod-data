@@ -61,6 +61,8 @@ resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund -
 resp = client.get_fundamental_equity('GSPC.INDX') # Index - 
 resp = client.get_fundamentals_bulk(exchange='SN') # 
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
+# Cryptocurrencies fundamental data
+resp = client.get_fundamental_equity('AAVE-USD.CC')
 # Calendar. Upcoming Earnings, Trends, IPOs and Splits
 resp = client.get_calendar_earnings() # 
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA') # 
@@ -118,11 +120,14 @@ PARTIALLY - 5. Try to implement the Stock Market Screener API
 
 # Sentiment Data Financial API
 resp = client.get_sentiment(s='BTC-USD.CC')
+resp = client.get_financial_tweets(s='TRI.US')
 # Economic events
 resp = client.get_economic_events(country='CH', comparison='mom', from_='2022-05-01')
 # Financial News API
-tags = client.get_financial_tags() # 
-resp = client.get_financial_news(s='V.US') # choose a random tag - 
+import numpy as np
+tags = client.get_financial_tags() # get the available tags
+resp = client.get_financial_news(t=np.random.choice(tags)) # choose a random tag
+resp = client.get_financial_news(s='V.US')
 # Get the available macroindicators names
 resp = client.get_macro_indicator_name()
 resp = client.get_macro_indicator('CHL', indicator='population_growth_annual')
