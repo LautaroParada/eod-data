@@ -120,11 +120,14 @@ PARTIALLY - 5. Try to implement the Stock Market Screener API
 
 # Sentiment Data Financial API
 resp = client.get_sentiment(s='BTC-USD.CC')
+resp = client.get_financial_tweets(s='TRI.US')
 # Economic events
 resp = client.get_economic_events(country='CH', comparison='mom', from_='2022-05-01')
 # Financial News API
-tags = client.get_financial_tags() # 
-resp = client.get_financial_news(s='V.US') # choose a random tag - 
+import numpy as np
+tags = client.get_financial_tags() # get the available tags
+resp = client.get_financial_news(t=np.random.choice(tags)) # choose a random tag
+resp = client.get_financial_news(s='V.US')
 # Get the available macroindicators names
 resp = client.get_macro_indicator_name()
 resp = client.get_macro_indicator('CHL', indicator='population_growth_annual')
