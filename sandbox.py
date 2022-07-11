@@ -59,7 +59,7 @@ resp = client.get_fundamental_equity(symbol, filter_='Financials::Balance_Sheet:
 resp = client.get_fundamental_equity('QVAL.US') # ETF - 
 resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund - 
 resp = client.get_fundamental_equity('GSPC.INDX') # Index - 
-resp = client.get_fundamentals_bulk(exchange='SN') # 
+# resp = client.get_fundamentals_bulk(exchange='SN') # 
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
 # Cryptocurrencies fundamental data
 resp = client.get_fundamental_equity('AAVE-USD.CC')
