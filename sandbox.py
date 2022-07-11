@@ -61,6 +61,8 @@ resp = client.get_fundamental_equity('SWPPX.US') # Mutual Fund -
 resp = client.get_fundamental_equity('GSPC.INDX') # Index - 
 resp = client.get_fundamentals_bulk(exchange='SN') # 
 resp = client.get_fundamentals_bonds(cusip='US00213MAS35')
+# Cryptocurrencies fundamental data
+resp = client.get_fundamental_equity('AAVE-USD.CC')
 # Calendar. Upcoming Earnings, Trends, IPOs and Splits
 resp = client.get_calendar_earnings() # 
 resp = client.get_calendar_trends(symbols='AAPL.US,MSFT.US,AI.PA') # 
