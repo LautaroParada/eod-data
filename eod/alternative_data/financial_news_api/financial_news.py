@@ -28,7 +28,7 @@ class FinancialNews(RequestHandler):
         Returns
         -------
         list
-            financial news for the selected symbol or tag.
+            Financial news for the selected symbol or tag.
 
         """
         self.endpoint = self.URL_FINANCIAL_NEWS
