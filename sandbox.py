@@ -131,3 +131,9 @@ resp = client.get_financial_news(s='V.US')
 # Get the available macroindicators names
 resp = client.get_macro_indicator_name()
 resp = client.get_macro_indicator('CHL', indicator='population_growth_annual')
+
+
+#%% User API
+
+# get the user details
+resp = client.get_user()
