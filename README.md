@@ -18,6 +18,7 @@
 	- [Fundamental Financial Data APIs](#fundamental-and-economic-financial-data-apis-arrow_up)
 	- [Exchanges Financial APIs](#exchanges-stock-market-financial-apis-arrow_up)
 	- [Alternative Financial Data APIs](#alternative-financial-data-arrow_up)
+	- [User API](#user-api)
 6. [Disclaimer](#disclaimer-arrow_up)
 
 ## General description [:arrow_up:](#eod-historical-data-sdk)
@@ -360,6 +361,14 @@ resp = client.get_economic_events()
 
 # Retrieve the economic events for Chile for the 4th quarter using a Year-over-Year comparison, and limit the amount of data to 5 rows.
 client.get_economic_events(from_='2020-10-01', to_='2020-12-31', country='CH', limit=5, comparison='yoy')
+```
+
+### User API [:arrow_up:](#eod-historical-data-sdk)
+- **User API**: The User API allows you to retrieve user details such as name, email, subscription type, payment method, API request statistics, daily rate limit, extra API call limit, affiliate program invitation token, and token click count.
+	- Usage:
+```python
+# Get the user data
+resp = client.get_user()
 ```
 
 ## Disclaimer [:arrow_up:](#eod-historical-data-sdk)
